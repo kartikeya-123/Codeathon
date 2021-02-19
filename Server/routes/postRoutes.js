@@ -43,4 +43,5 @@ router.delete(
   postController.deletePost
 );
 
+router.post('/comment/:id', authController.protect, postController.commentPost);
 module.exports = router;

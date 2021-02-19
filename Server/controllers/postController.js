@@ -1,4 +1,5 @@
 const Post = require('../models/postModel.js');
+const Comment = require('../models/commentModel.js');
 const catchAsync = require('./../utils/catchAsync.js');
 const AppError = require('./../utils/appError'); // class//
 const factory = require('./handlerFactory.js');
@@ -129,4 +130,28 @@ exports.getUser = catchAsync(async (req, res, next) => {
   next();
 });
 
+exports.commentPost = catchAsync(async (req, res, next) => {
+  const post = await Post.findById(req.params.id);
+
+  if (!post) {
+    return next(new AppError('This post is not available ', 404));
+  }
+
+  if (!req.body.comment) {
+    return next(new AppError('There is no comment ', 404));
+  }
+
+  const comment = await Comment.create({
+    comment: req.body.comment,
+    author: req.user.name,
+  });
+
+  post.Comments.push(comment._id);
+  await post.save({ runValidators: false });
+
+  res.status(200).json({
+    status: 'success',
+    post,
+  });
+});
 // exports.getPostsUser = factory.getAll()

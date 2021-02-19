@@ -46,6 +46,12 @@ const postSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'User',
     },
+    Comments: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Comment',
+      },
+    ],
   },
   {
     toJson: { virtuals: true },
@@ -58,10 +64,15 @@ postSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'upvotedBy',
     select: 'name',
-  }).populate({
-    path: 'downvotedBy',
-    select: 'name',
-  });
+  })
+    .populate({
+      path: 'downvotedBy',
+      select: 'name',
+    })
+    .populate({
+      path: 'Comments',
+      select: 'comment author',
+    });
   next();
 });
 
