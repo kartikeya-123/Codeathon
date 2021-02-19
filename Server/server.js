@@ -9,6 +9,7 @@ dotenv.config();
 // );
 //setting up connection with hosted DATABASE
 // if we want to connect with local database then use proceess.env.DATABASE_LOCAL//
+
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
