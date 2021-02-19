@@ -1,0 +1,12 @@
+.Profile {
+  text-align: center;
+  width: 80%;
+
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .Profile {
+    width: 100%;
+  }
+}

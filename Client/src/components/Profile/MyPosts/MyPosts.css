@@ -1,0 +1,36 @@
+.Posts {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 80%;
+  margin: auto;
+}
+.Header {
+  width: 30%;
+  padding: 2px;
+  text-align: center;
+  box-shadow: 0 2px 3px rgb(197, 186, 186);
+  margin: 8px;
+  border-radius: 10px;
+  /* display: flex;
+  flex-flow: row; */
+  box-sizing: border-box;
+  /* cursor: pointer; */
+  position: relative;
+  background-color: #deffa0;
+  border: 2px solid rgb(65, 32, 32);
+  color: rgb(17, 165, 190) !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: 30px !important;
+  font-style: italic !important;
+  font-weight: bolder !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 500px) {
+  .Header {
+    width: 100%;
+    font-size: 24px;
+  }
+}

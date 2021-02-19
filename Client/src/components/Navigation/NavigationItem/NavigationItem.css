@@ -1,0 +1,52 @@
+.NavigationItem {
+  margin: 0px;
+  box-sizing: border-box;
+  height: 50%;
+  display: flex;
+  width: auto;
+  align-items: center;
+}
+
+.NavigationItem a {
+  color: white;
+  height: 100%;
+  margin-bottom: 25px;
+  font-size: larger;
+  padding: 1px 10px;
+  text-decoration: none;
+
+  border-bottom: 4px solid transparent;
+  display: block;
+  box-sizing: border-box;
+}
+
+.NavigationItem a:hover,
+.NavigationItem a:active {
+  /* border-bottom: 4px solid #81d434; */
+  background-color: rgb(168, 161, 161);
+  border-radius: 8px;
+  padding-top: 2px;
+}
+.NavigationItemmyposts {
+  margin: 0px;
+  box-sizing: border-box;
+  height: 50%;
+  display: flex;
+  width: auto;
+  align-items: center;
+}
+
+.NavigationItemmyposts a {
+  color: rgb(21, 228, 255);
+  height: 100%;
+  margin-bottom: 25px;
+  padding: 4px 10px;
+  text-decoration: none;
+  font-weight: bolder;
+  border-bottom: 4px solid transparent;
+  display: block;
+  box-sizing: border-box;
+}
+.NavigationItemmyposts a:hover {
+  color: rgb(86, 0, 247);
+}

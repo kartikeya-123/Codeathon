@@ -1,0 +1,36 @@
+.NewPost {
+  width: 60%;
+  margin: 20px auto;
+  border: 1px solid transparent;
+  box-shadow: 3px 3px 3px #ccc;
+  text-align: center;
+  padding: 20px auto;
+  height: 100%;
+  background-color: white;
+}
+
+.NewPost label {
+  display: block;
+  margin: 10px auto;
+  font-size: large;
+  text-align: center;
+  font-weight: bold;
+}
+
+.NewPost input,
+.NewPost textarea,
+.NewPost select {
+  display: block;
+  width: 80%;
+  box-sizing: border-box;
+  border: 1px solid black;
+  outline: none;
+  font: inherit;
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .NewPost {
+    width: 80%;
+  }
+}

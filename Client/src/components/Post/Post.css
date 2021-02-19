@@ -1,0 +1,128 @@
+.Post {
+  width: 66%;
+  padding: 8px;
+  /* height: 330px; */
+  text-align: center;
+
+  border: 1px solid rgb(58, 29, 29);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  box-shadow: 4px 4px 4px rgb(197, 186, 186);
+  margin: 10px;
+  box-sizing: border-box;
+  min-height: 240px;
+  /* cursor: pointer; */
+  position: relative;
+  background-color: white;
+}
+@media only screen and (max-width: 900px) {
+  .Post {
+    width: 540px;
+    /* height: 350px; */
+  }
+}
+@media (max-width: 500px) {
+  .Post {
+    width: 100%;
+    min-height: 230px;
+    margin: 5px;
+
+    /* height: 310px; */
+  }
+  .Properties {
+    width: 70%;
+  }
+}
+/* .Post:hover,
+.Post:active {
+  background-color: #d6e5f1;
+} */
+.Heading {
+  color: rgb(230, 32, 65) !important;
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: 24px !important;
+  font-style: italic !important;
+  font-weight: bolder !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  /* text-transform: capitalize !important; */
+  padding: 0px;
+  margin-top: 2px;
+}
+.SecondHeader {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.Author {
+  margin: 8px 0px 0px 0px;
+  color: black;
+  font-weight: bold;
+  position: relative;
+  text-align: left;
+  font-size: 17px;
+  text-transform: capitalize;
+}
+.Body {
+  position: relative;
+  text-align: left;
+  font-size: 18px;
+  color: rgb(35, 35, 36);
+  padding-bottom: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  /* padding: 10px; */
+}
+.Read {
+  color: rgb(226, 213, 213);
+  cursor: pointer;
+}
+.Date {
+  position: relative;
+  text-align: left;
+  color: rgb(185, 181, 181);
+  padding-right: 10px;
+  margin: 8px 0px 0px 0px;
+  padding-top: 3px;
+}
+.Votes {
+  color: black;
+  margin: 5px auto;
+  padding: 2px;
+  display: flex;
+  vertical-align: baseline;
+  width: 50%;
+  box-sizing: border-box;
+}
+.Properties {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 3px 1px 1px 1px;
+  margin: 2px 4px;
+  align-items: stretch;
+  position: absolute;
+  width: 90%;
+  bottom: 0px;
+  left: 20px;
+  right: 20px;
+
+  box-sizing: border-box;
+  z-index: 90;
+}
+
+.Spacing {
+  position: relative;
+  padding-left: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+}
+.HeadSpace {
+  position: relative;
+  padding-left: 10px;
+  bottom: 2px;
+}
