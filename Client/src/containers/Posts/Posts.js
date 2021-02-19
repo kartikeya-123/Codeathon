@@ -9,6 +9,9 @@ import UserContext from "./../../hoc/Context/UserContext";
 // import { AiFillWindows } from 'react-icons/ai';
 // import {Link} from 'react-router-dom'
 // import Button from './../../components/UI/Button/Button'
+
+import { Grid } from "@material-ui/core";
+
 class Posts extends Component {
   state = {
     posts: [],
@@ -19,7 +22,7 @@ class Posts extends Component {
   static contextType = UserContext;
   componentDidMount() {
     // connecting with server
-    console.log(this.props);
+    // console.log(this.props);
     this.setState({ isLoading: true });
     axios
       .get("/api/v1/posts")
@@ -42,7 +45,7 @@ class Posts extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const oldPosts = [...this.state.posts];
         const postIndex = oldPosts.indexOf(
           oldPosts.find((post) => post._id === id)
@@ -82,7 +85,7 @@ class Posts extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         // window.location.reload(false);
         this.setState({ showConfirmMessage: false, blacklisted: true });
       })
@@ -97,26 +100,28 @@ class Posts extends Component {
     } else {
       posts = this.state.posts.map((currPost) => {
         return (
-          <Post
-            title={currPost.title}
-            author={currPost.author}
-            date={currPost.createdAt}
-            upvotes={currPost.upvotes}
-            downvotes={currPost.downvotes}
-            body={currPost.body}
-            key={currPost._id}
-            clicked={() => this.fullPostHandler(currPost._id)}
-            isLoggedin={this.state.isLoggedin}
-            userRole={this.context.role}
-            confirmBlacklist={this.confirmBlacklist}
-            showConfirmMessage={this.state.showConfirmMessage}
-            goBack={this.closeModal}
-            blacklistPost={() => this.blacklistPostHandler(currPost._id)}
-            upvote={() => this.upovoteOrDisvote(currPost._id, "upvote")}
-            downvote={() => this.upovoteOrDisvote(currPost._id, "downvote")}
-            upvotedBy={currPost.upvotedBy}
-            downvotedBy={currPost.downvotedBy}
-          />
+          <Grid item xs={12} md={10} key={`${currPost.createdAt}`}>
+            <Post
+              title={currPost.title}
+              author={currPost.author}
+              date={currPost.createdAt}
+              upvotes={currPost.upvotes}
+              downvotes={currPost.downvotes}
+              body={currPost.body}
+              key={currPost._id}
+              clicked={() => this.fullPostHandler(currPost._id)}
+              isLoggedin={this.state.isLoggedin}
+              userRole={this.context.role}
+              confirmBlacklist={this.confirmBlacklist}
+              showConfirmMessage={this.state.showConfirmMessage}
+              goBack={this.closeModal}
+              blacklistPost={() => this.blacklistPostHandler(currPost._id)}
+              upvote={() => this.upovoteOrDisvote(currPost._id, "upvote")}
+              downvote={() => this.upovoteOrDisvote(currPost._id, "downvote")}
+              upvotedBy={currPost.upvotedBy}
+              downvotedBy={currPost.downvotedBy}
+            />
+          </Grid>
         );
       });
     }
@@ -134,11 +139,21 @@ class Posts extends Component {
           <section className={classes.Posts}>
             <div className={classes.Header}>
               <h1>
-                <strong>Recent Posts</strong>
+                <strong>Find the Latest Posts</strong>
               </h1>
             </div>
           </section>
-          <section className={classes.Posts}>{posts}</section>
+          <Grid
+            container
+            spacing={5}
+            style={{
+              margin: "auto",
+              maxWidth: "100vw",
+              justifyContent: "center",
+            }}
+          >
+            {posts}
+          </Grid>
         </article>
       </Aux>
     );

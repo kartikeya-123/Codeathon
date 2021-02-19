@@ -6,6 +6,8 @@ const xss = require('xss-clean');
 
 const app = express();
 
+const requestLogger = require('./utils/requestLogger');
+
 const userRouter = require('./routes/userRoutes.js');
 const postRouter = require('./routes/postRoutes.js');
 const cookieParser = require('cookie-parser');
@@ -22,7 +24,7 @@ if (process.env.NODE_ENV === 'development') {
   // console.log('in development');
   app.use(morgan('dev'));
 }
-console.log(process.env.NODE_ENV);
+
 app.use(cookieParser());
 // if (process.env.NODE_ENV === 'production') {
 //   // console.log('in production mode');
@@ -35,6 +37,9 @@ app.use(cookieParser());
 //   );
 //   next();
 // });
+
+app.use(requestLogger);
+
 app.use(
   cors({
     origin: 'http://localhost:3001',

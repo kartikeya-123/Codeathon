@@ -60,14 +60,14 @@ class ForgotPassword extends Component {
     const user = {
       email: this.state.LoginForm.email.value,
     };
-    console.log(user);
+    // console.log(user);
 
     axios
       .post("/api/v1/users/forgotPassword", user, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({ resetTokenSent: true, isLoading: false });
         // this.props.history.push("/");
         // window.location.reload(false);

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import classes from './Post.css';
-import Modal from './../UI/Modal/Modal';
-import Aux from './../../hoc/Auxil/Auxil';
-import Button from './../UI/Button/Button';
-import UserContext from './../../hoc/Context/UserContext';
-import { FaUserEdit } from 'react-icons/fa';
+import React, { Component } from "react";
+import classes from "./Post.css";
+import Modal from "./../UI/Modal/Modal";
+import Aux from "./../../hoc/Auxil/Auxil";
+import Button from "./../UI/Button/Button";
+import UserContext from "./../../hoc/Context/UserContext";
+import { FaUserEdit } from "react-icons/fa";
+
+import { Card } from "@material-ui/core";
 
 import {
   AiFillLike,
@@ -13,7 +15,7 @@ import {
   AiOutlineLike,
   AiOutlineDislike,
   AiTwotoneEdit,
-} from 'react-icons/ai';
+} from "react-icons/ai";
 class Post extends Component {
   state = {
     showMore: false,
@@ -39,22 +41,24 @@ class Post extends Component {
     let date = new Date(this.props.date).toDateString();
     let day = date.slice(0, 3);
     let date1 = date.slice(3);
-    date = day + ',' + date1;
+    date = day + "," + date1;
 
     let like = (
       <AiOutlineLike
         onClick={this.context.isLoggedin ? this.props.upvote : null}
-        cursor={this.context.isLoggedin ? 'pointer' : null}
+        cursor={this.context.isLoggedin ? "pointer" : null}
         color="rgba(151, 146, 146, 0.609)"
         size="24px"
+        style={{ transform: "translateY(-2px)" }}
       />
     );
     let Dislike = (
       <AiOutlineDislike
         onClick={this.context.isLoggedin ? this.props.downvote : null}
-        cursor={this.context.isLoggedin ? 'pointer' : null}
+        cursor={this.context.isLoggedin ? "pointer" : null}
         color="rgba(151, 146, 146, 0.609)"
         size="24px"
+        style={{ transform: "translateY(2px)" }}
       />
     );
     for (let i = 0; i < this.props.upvotedBy.length; i++) {
@@ -62,8 +66,8 @@ class Post extends Component {
         like = (
           <AiFillLike
             onClick={this.context.isLoggedin ? this.props.upvote : null}
-            cursor={this.context.isLoggedin ? 'pointer' : null}
-            color={this.context.isLoggedin ? 'rgb(107, 210, 245)' : null}
+            cursor={this.context.isLoggedin ? "pointer" : null}
+            color={this.context.isLoggedin ? "rgb(107, 210, 245)" : null}
             size="24px"
           />
         );
@@ -74,8 +78,8 @@ class Post extends Component {
         Dislike = (
           <AiFillDislike
             onClick={this.context.isLoggedin ? this.props.downvote : null}
-            cursor={this.contextisLoggedin ? 'pointer' : null}
-            color={this.context.isLoggedin ? 'rgb(151, 100, 100)' : null}
+            cursor={this.contextisLoggedin ? "pointer" : null}
+            color={this.context.isLoggedin ? "rgb(151, 100, 100)" : null}
             size="24px"
           />
         );
@@ -84,7 +88,7 @@ class Post extends Component {
     const deletePostmessage = (
       <div>
         <h2>Delete Post</h2>
-        <p style={{ fontSize: '18px' }}>
+        <p style={{ fontSize: "18px" }}>
           Are you sure you wish to delete this answer? This action can be
           undone.
         </p>
@@ -99,7 +103,7 @@ class Post extends Component {
     const updatePostmessage = (
       <div>
         <h2>Update Post</h2>
-        <p style={{ fontSize: '18px' }}>
+        <p style={{ fontSize: "18px" }}>
           If you wish to edit your post , please click on update
         </p>
         <Button btnType="Cancel" clicked={this.props.goBack}>
@@ -133,8 +137,8 @@ class Post extends Component {
         <Modal show={this.props.showConfirmMessage}>
           {blacklistPostmessage}
         </Modal>
-        <article className={classes.Post}>
-          <h1 className={classes.Heading}>{this.props.title}</h1>
+        <Card style={{ padding: "30px" }}>
+          {/* <h1 className={classes.Heading}>{this.props.title}</h1> */}
           <div className={classes.SecondHeader}>
             <p className={classes.Author}>
               <FaUserEdit color="rgb(104, 146, 76)" size="22px" />
@@ -170,48 +174,54 @@ class Post extends Component {
           </div>
 
           <hr></hr>
-          <br></br>
+          {/* <br></br> */}
 
           <div className={classes.Properties}>
-            <p className={classes.Votes}>
-              {like}
-              <span className={classes.Spacing}>{this.props.upvotes}</span>
-            </p>
-            <p className={classes.Votes}>
-              {Dislike}
-              <span className={classes.Spacing}>{this.props.downvotes}</span>
-            </p>
-            <p className={classes.Votes}>
-              {this.props.userRole === 'admin' ? (
-                <Button btnType="Danger" clicked={this.props.blacklistPost}>
-                  Blacklist
-                </Button>
-              ) : null}
-            </p>
-            <p className={classes.Votes}>
-              {this.props.editPost ? (
-                <AiTwotoneEdit
-                  onClick={this.props.checkUpdate}
-                  // selected={this.state.upvoted}
-                  cursor="pointer"
-                  color="grey"
-                  size="26px"
-                />
-              ) : null}
-            </p>
-            <p className={classes.Votes}>
-              {this.props.deletePost ? (
-                <AiFillDelete
-                  onClick={this.props.checkdelete}
-                  // selected={this.state.upvoted}
-                  cursor="pointer"
-                  color="grey"
-                  size="26px"
-                />
-              ) : null}
-            </p>
+            <div style={{ display: "flex" }}>
+              <p className={classes.Votes}>
+                {like}
+                <span className={classes.Spacing}>{this.props.upvotes}</span>
+              </p>
+              <p className={classes.Votes}>
+                {Dislike}
+                <span className={classes.Spacing}>{this.props.downvotes}</span>
+              </p>
+            </div>
+            <div style={{ display: "flex" }}>
+              <p className={classes.Votes}>
+                {this.props.userRole === "admin" ? (
+                  <Button btnType="Danger" clicked={this.props.blacklistPost}>
+                    Blacklist
+                  </Button>
+                ) : null}
+              </p>
+              <p className={classes.Votes}>
+                {this.props.editPost ? (
+                  <AiTwotoneEdit
+                    onClick={this.props.checkUpdate}
+                    // selected={this.state.upvoted}
+                    cursor="pointer"
+                    color="grey"
+                    size="32px"
+                    style={{ marginRight: "10px" }}
+                  />
+                ) : null}
+              </p>
+              <p className={classes.Votes}>
+                {this.props.deletePost ? (
+                  <AiFillDelete
+                    onClick={this.props.checkdelete}
+                    // selected={this.state.upvoted}
+                    cursor="pointer"
+                    color="grey"
+                    size="26px"
+                    style={{ marginLeft: "10px" }}
+                  />
+                ) : null}
+              </p>
+            </div>
           </div>
-        </article>
+        </Card>
       </Aux>
     );
   }

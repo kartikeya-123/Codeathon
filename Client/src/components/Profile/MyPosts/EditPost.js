@@ -21,7 +21,7 @@ class EditPost extends Component {
     axios
       .get(`/api/v1/posts/${this.props.match.params.id}`)
       .then((response) => {
-        console.log(response.data.data.doc);
+        // console.log(response.data.data.doc);
         this.setState({
           title: response.data.data.doc.title,
           body: response.data.data.doc.body,
@@ -38,13 +38,13 @@ class EditPost extends Component {
       title: this.state.title,
       body: this.state.body,
     };
-    console.log(data);
+    // console.log(data);
     axios
       .patch(`/api/v1/posts/edit/${this.props.match.params.id}`, data, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({ show: true });
         // this.props.history.push("/");
         // window.location.reload(false);
@@ -52,7 +52,7 @@ class EditPost extends Component {
       .catch((err) => {
         console.log(err);
       });
-    console.log("request");
+    // console.log("request");
   };
   continue = () => {
     this.props.history.push("/my-posts");

@@ -89,7 +89,7 @@ class ResetPassword extends Component {
       password: this.state.LoginForm.password.value,
       passwordConfirm: this.state.LoginForm.passwordConfirm.value,
     };
-    console.log(user);
+    // console.log(user);
 
     axios
       .patch(
@@ -100,7 +100,7 @@ class ResetPassword extends Component {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           reset: true,
           isLoading: false,
