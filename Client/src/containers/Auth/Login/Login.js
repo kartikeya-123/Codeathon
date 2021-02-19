@@ -88,15 +88,15 @@ class Auth extends Component {
         email: this.state.LoginForm.email.value,
         password: this.state.LoginForm.password.value,
       };
-      console.log(user);
+      // console.log(user);
       // this.setState({ isLoading: true });
       axios
         .post("/api/v1/users/login", user, {
           withCredentials: true,
         })
         .then((response) => {
-          console.log(response.data);
-          console.log(document.cookie);
+          // console.log(response.data);
+          // console.log(document.cookie);
           if (!response.data.verification) {
             this.setState({
               errorMessage: "You have not verified your email id ",

@@ -13,6 +13,9 @@ import UserContext from "./../../../hoc/Context/UserContext";
 // import {Link} from 'react-router-dom'
 import Button from "./../../../components/UI/Button/Button";
 // import Profile from "./../../Profile/Profile";
+
+import { Grid } from "@material-ui/core";
+
 class MyPosts extends Component {
   state = {
     posts: [],
@@ -34,7 +37,7 @@ class MyPosts extends Component {
       })
       .then((response) => {
         // console.log(response.data.data.docs);
-        console.log(response.data.data);
+        // console.log(response.data.data);
         const posts = response.data.data.docs;
         this.setState({ posts: posts, isLoading: false });
       })
@@ -80,7 +83,7 @@ class MyPosts extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         // window.location.reload(false);
         const updatedPosts = [...this.state.posts];
         const myPostIndex = updatedPosts.indexOf(
@@ -136,46 +139,48 @@ class MyPosts extends Component {
     } else {
       posts = this.state.posts.map((currPost) => {
         return (
-          <Post
-            title={currPost.title}
-            author={currPost.author}
-            date={currPost.createdAt}
-            upvotes={currPost.upvotes}
-            downvotes={currPost.downvotes}
-            body={currPost.body}
-            key={currPost._id}
-            upvotedBy={currPost.upvotedBy}
-            downvotedBy={currPost.downvotedBy}
-            delete="true"
-            confirm={this.state.confirm}
-            show={this.state.show}
-            checkdelete={this.checkconfirmDelete}
-            checkUpdate={this.checkconfirmUpdate}
-            goBack={this.closeModal}
-            deletePost={() =>
-              this.deletePostHandler(currPost._id, currPost.User)
-            }
-            isLoggedin={this.state.isLoggedin}
-            upvoted={this.state.upvoted}
-            downvoted={this.state.downvoted}
-            editPost={() => this.editPostHandler(currPost._id, currPost.User)}
-            upvote={() =>
-              this.UpvoteOrDisvoteHandler(
-                "upvote",
-                currPost._id,
-                currPost.upvotes,
-                currPost.downvotes
-              )
-            }
-            downvote={() =>
-              this.UpvoteOrDisvoteHandler(
-                "downvote",
-                currPost._id,
-                currPost.upvotes,
-                currPost.downvotes
-              )
-            }
-          />
+          <Grid item xs={12} md={10} key={`${currPost.createdAt}`}>
+            <Post
+              title={currPost.title}
+              author={currPost.author}
+              date={currPost.createdAt}
+              upvotes={currPost.upvotes}
+              downvotes={currPost.downvotes}
+              body={currPost.body}
+              key={currPost._id}
+              upvotedBy={currPost.upvotedBy}
+              downvotedBy={currPost.downvotedBy}
+              delete="true"
+              confirm={this.state.confirm}
+              show={this.state.show}
+              checkdelete={this.checkconfirmDelete}
+              checkUpdate={this.checkconfirmUpdate}
+              goBack={this.closeModal}
+              deletePost={() =>
+                this.deletePostHandler(currPost._id, currPost.User)
+              }
+              isLoggedin={this.state.isLoggedin}
+              upvoted={this.state.upvoted}
+              downvoted={this.state.downvoted}
+              editPost={() => this.editPostHandler(currPost._id, currPost.User)}
+              upvote={() =>
+                this.UpvoteOrDisvoteHandler(
+                  "upvote",
+                  currPost._id,
+                  currPost.upvotes,
+                  currPost.downvotes
+                )
+              }
+              downvote={() =>
+                this.UpvoteOrDisvoteHandler(
+                  "downvote",
+                  currPost._id,
+                  currPost.upvotes,
+                  currPost.downvotes
+                )
+              }
+            />
+          </Grid>
         );
       });
     }
@@ -196,7 +201,18 @@ class MyPosts extends Component {
               </h1>
             </div>
           </section>
-          <section className={classes.Posts}>{posts}</section>
+          {/* <section className={classes.Posts}>{posts}</section> */}
+          <Grid
+            container
+            spacing={5}
+            style={{
+              margin: "auto",
+              maxWidth: "100vw",
+              justifyContent: "center",
+            }}
+          >
+            {posts}
+          </Grid>
         </article>
       </Aux>
     );

@@ -10,14 +10,21 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
-  box-shadow: 4px 4px 4px rgb(197, 186, 186);
+  /* box-shadow: 4px 4px 4px rgb(197, 186, 186); */
   margin: 10px;
   box-sizing: border-box;
-  min-height: 240px;
+  /* min-height: 240px; */
   /* cursor: pointer; */
   position: relative;
   background-color: white;
+
+  transition: all 200ms ease-in-out;
 }
+
+.Post:hover {
+  box-shadow: 0px 0px 20px rgb(197, 186, 186);
+}
+
 @media only screen and (max-width: 900px) {
   .Post {
     width: 540px;
@@ -27,7 +34,7 @@
 @media (max-width: 500px) {
   .Post {
     width: 100%;
-    min-height: 230px;
+    /* min-height: 230px; */
     margin: 5px;
 
     /* height: 310px; */
@@ -90,23 +97,24 @@
   margin: 5px auto;
   padding: 2px;
   display: flex;
+  justify-content: center;
   vertical-align: baseline;
   width: 50%;
   box-sizing: border-box;
 }
+
 .Properties {
-  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: left;
   padding: 3px 1px 1px 1px;
-  margin: 2px 4px;
-  align-items: stretch;
-  position: absolute;
-  width: 90%;
-  bottom: 0px;
+  margin: auto;
+  align-items: center;
+  /* position: absolute; */
+  width: 100%;
+  /* bottom: 0px;
   left: 20px;
-  right: 20px;
+  right: 20px; */
 
   box-sizing: border-box;
   z-index: 90;
@@ -115,8 +123,10 @@
 .Spacing {
   position: relative;
   padding-left: 10px;
-  margin-top: 5px;
+  padding-right: 10px;
+  /* margin-top: 5px; */
   font-size: 16px;
+  align-items: center;
 }
 .HeadSpace {
   position: relative;

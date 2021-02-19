@@ -30,7 +30,7 @@ class Layout extends Component {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           isLoggedin: true,
           userRole: response.data.user.role,

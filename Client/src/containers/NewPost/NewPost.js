@@ -21,13 +21,13 @@ class NewPost extends Component {
       body: this.state.body,
       author: this.state.author,
     };
-    console.log(data);
+    // console.log(data);
     axios
       .post("/api/v1/posts", data, {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({ show: true });
         // this.props.history.push("/");
         // window.location.reload(false);
