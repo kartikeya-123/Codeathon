@@ -66,7 +66,7 @@ class ResetPassword extends Component {
   // checkIsLoggedIn = () => {
   //   this.setState({ isLoading: true });
   //   axios
-  //     .get("http://localhost:7000/api/v1/users/loginStatus", {
+  //     .get("/api/v1/users/loginStatus", {
   //       withCredentials: true,
   //     })
   //     .then((response) => {
@@ -102,7 +102,7 @@ class ResetPassword extends Component {
       passwordConfirm: this.state.LoginForm.newPasswordConfirm.value,
     };
     axios
-      .patch("http://localhost:7000/api/v1/users/updateMyPassword", data, {
+      .patch("/api/v1/users/updateMyPassword", data, {
         withCredentials: true,
       })
       .then((response) => {

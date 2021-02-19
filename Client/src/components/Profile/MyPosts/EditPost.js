@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import UserContext from './../../../hoc/Context/UserContext';
-import classes from './../../../containers/NewPost/NewPost.css';
-import Aux from './../../../hoc/Auxil/Auxil';
-import Button from './../../../components/UI/Button/Button';
-import Modal from './../../UI/Modal/Modal';
-import Spinner from './../../UI/Spinner/Spinner';
+import React, { Component } from "react";
+import axios from "axios";
+import UserContext from "./../../../hoc/Context/UserContext";
+import classes from "./../../../containers/NewPost/NewPost.css";
+import Aux from "./../../../hoc/Auxil/Auxil";
+import Button from "./../../../components/UI/Button/Button";
+import Modal from "./../../UI/Modal/Modal";
+import Spinner from "./../../UI/Spinner/Spinner";
 class EditPost extends Component {
   state = {
-    title: '',
-    body: '',
-    author: '',
+    title: "",
+    body: "",
+    author: "",
     isLoading: true,
     isLoggedin: false,
     show: false,
@@ -19,7 +19,7 @@ class EditPost extends Component {
   componentDidMount = () => {
     this.setState({ isLoggedin: this.context.isLoggedin, isLoading: true });
     axios
-      .get(`http://localhost:7000/api/v1/posts/${this.props.match.params.id}`)
+      .get(`/api/v1/posts/${this.props.match.params.id}`)
       .then((response) => {
         console.log(response.data.data.doc);
         this.setState({
@@ -40,13 +40,9 @@ class EditPost extends Component {
     };
     console.log(data);
     axios
-      .patch(
-        `http://localhost:7000/api/v1/posts/edit/${this.props.match.params.id}`,
-        data,
-        {
-          withCredentials: true,
-        }
-      )
+      .patch(`/api/v1/posts/edit/${this.props.match.params.id}`, data, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response);
         this.setState({ show: true });
@@ -56,10 +52,10 @@ class EditPost extends Component {
       .catch((err) => {
         console.log(err);
       });
-    console.log('request');
+    console.log("request");
   };
   continue = () => {
-    this.props.history.push('/my-posts');
+    this.props.history.push("/my-posts");
     window.location.reload(false);
   };
 

@@ -38,7 +38,7 @@ class VerifyEmail extends Component {
   // checkIsLoggedIn = () => {
   //   this.setState({ isLoading: true });
   //   axios
-  //     .get("http://localhost:7000/api/v1/users/loginStatus", {
+  //     .get("/api/v1/users/loginStatus", {
   //       withCredentials: true,
   //     })
   //     .then((response) => {
@@ -62,13 +62,9 @@ class VerifyEmail extends Component {
     console.log(user);
 
     axios
-      .post(
-        `http://localhost:7000/api/v1/users/signup/${this.state.LoginForm.token.value}`,
-        user,
-        {
-          withCredentials: true,
-        }
-      )
+      .post(`/api/v1/users/signup/${this.state.LoginForm.token.value}`, user, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response.data);
         this.setState({ showWelcome: true, isLoading: false });

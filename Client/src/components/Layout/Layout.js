@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import Aux from './../../hoc/Auxil/Auxil';
-import classes from './Layout.css';
-import Toolbar from './../UI/Toolbar/Toolbar';
-import Posts from './../../containers/Posts/Posts';
-import NewPost from './../../containers/NewPost/NewPost';
-import Login from '../../containers/Auth/Login/Login';
-import Signup from '../../containers/Auth/SignUp/Signup';
-import ForgotPassword from '../../containers/Auth/ForgotPassword';
-import ChangePassword from '../../containers/Auth/ChangePassword';
-import VerifyEmail from '../../containers/Auth/VerifyEmail';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import User from './../Profile/User/User';
-import MyPosts from './../Profile/MyPosts/MyPosts';
-import EditPost from './../Profile/MyPosts/EditPost';
-import axios from 'axios';
-import UserContext, { UserProvider } from './../../hoc/Context/UserContext';
-import Sidedrawer from './../Navigation/SideDrawer/SideDrawer';
+import React, { Component } from "react";
+import Aux from "./../../hoc/Auxil/Auxil";
+import classes from "./Layout.css";
+import Toolbar from "./../UI/Toolbar/Toolbar";
+import Posts from "./../../containers/Posts/Posts";
+import NewPost from "./../../containers/NewPost/NewPost";
+import Login from "../../containers/Auth/Login/Login";
+import Signup from "../../containers/Auth/SignUp/Signup";
+import ForgotPassword from "../../containers/Auth/ForgotPassword";
+import ChangePassword from "../../containers/Auth/ChangePassword";
+import VerifyEmail from "../../containers/Auth/VerifyEmail";
+import { Route, Switch, withRouter } from "react-router-dom";
+import User from "./../Profile/User/User";
+import MyPosts from "./../Profile/MyPosts/MyPosts";
+import EditPost from "./../Profile/MyPosts/EditPost";
+import axios from "axios";
+import UserContext, { UserProvider } from "./../../hoc/Context/UserContext";
+import Sidedrawer from "./../Navigation/SideDrawer/SideDrawer";
 class Layout extends Component {
   state = {
     isLoggedin: false,
-    userRole: '',
+    userRole: "",
     user: [],
     showSideDrawer: false,
   };
   static contextType = UserContext;
   checkIsLoggedIn = () => {
     axios
-      .get('http://localhost:7000/api/v1/users/loginStatus', {
+      .get("/api/v1/users/loginStatus", {
         withCredentials: true,
       })
       .then((response) => {
@@ -43,14 +43,14 @@ class Layout extends Component {
   };
   logoutUserHandler = (props) => {
     axios
-      .get('http://localhost:7000/api/v1/users/logout', {
+      .get("/api/v1/users/logout", {
         withCredentials: true,
       })
       .then((response) => {
         // console.log(response.data);
         // this.setState({ isLoggedin: false });
 
-        this.props.history.push('/login');
+        this.props.history.push("/login");
         window.location.reload(false);
       })
       .catch((err) => console.log(err));

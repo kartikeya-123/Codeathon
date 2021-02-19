@@ -12,25 +12,25 @@ module.exports = class Email {
   newTransport() {
     //using sedngrid
     // console.log(process.env.NODE_ENV);
-    if (process.env.NODE_ENV !== 'development') {
-      console.log('in production mode');
-      return nodemailer.createTransport({
-        service: 'SendGrid',
-        auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD,
-        },
-      });
-    } else {
-      return nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
-        auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD,
-        },
-      });
-    }
+    // if (process.env.NODE_ENV !== 'development') {
+    //   console.log('in production mode');
+    return nodemailer.createTransport({
+      service: 'SendGrid',
+      auth: {
+        user: process.env.SENDGRID_USERNAME,
+        pass: process.env.SENDGRID_PASSWORD,
+      },
+    });
+    // } else {
+    //   return nodemailer.createTransport({
+    //     host: process.env.EMAIL_HOST,
+    //     port: process.env.EMAIL_PORT,
+    //     auth: {
+    //       user: process.env.EMAIL_USERNAME,
+    //       pass: process.env.EMAIL_PASSWORD,
+    //     },
+    //   });
+    // }
   }
 
   //sending email//

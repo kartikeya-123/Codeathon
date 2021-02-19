@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import Post from './../../../components/Post/Post';
+import React, { Component } from "react";
+import Post from "./../../../components/Post/Post";
 // import { UpvoteOrDisvoteHandler } from "./../../../containers/Posts/Posts";
-import Aux from './../../../hoc/Auxil/Auxil';
+import Aux from "./../../../hoc/Auxil/Auxil";
 // import FullPost from "./../FullPost/FullPost";
-import classes from './../../../containers/Posts/Posts.css';
-import axios from 'axios';
-import Spinner from './../../../components/UI/Spinner/Spinner';
-import NavigationItem from '../../Navigation/NavigationItem/NavigationItem';
-import Modal from './../../UI/Modal/Modal';
-import UserContext from './../../../hoc/Context/UserContext';
+import classes from "./../../../containers/Posts/Posts.css";
+import axios from "axios";
+import Spinner from "./../../../components/UI/Spinner/Spinner";
+import NavigationItem from "../../Navigation/NavigationItem/NavigationItem";
+import Modal from "./../../UI/Modal/Modal";
+import UserContext from "./../../../hoc/Context/UserContext";
 
 // import {Link} from 'react-router-dom'
-import Button from './../../../components/UI/Button/Button';
+import Button from "./../../../components/UI/Button/Button";
 // import Profile from "./../../Profile/Profile";
 class MyPosts extends Component {
   state = {
@@ -29,7 +29,7 @@ class MyPosts extends Component {
     console.log(this.props);
     this.setState({ isLoading: true });
     axios
-      .get('http://localhost:7000/api/v1/posts/my-posts', {
+      .get("/api/v1/posts/my-posts", {
         withCredentials: true,
       })
       .then((response) => {
@@ -49,7 +49,7 @@ class MyPosts extends Component {
     };
 
     axios
-      .patch(`http://localhost:7000/api/v1/posts/${vote}/${id}`, data, {
+      .patch(`/api/v1/posts/${vote}/${id}`, data, {
         withCredentials: true,
       })
       .then((response) => {
@@ -71,12 +71,12 @@ class MyPosts extends Component {
       .catch((err) => console.log(err));
   };
   editPostHandler = (id, userId) => {
-    this.props.history.push('/edit/' + id);
+    this.props.history.push("/edit/" + id);
   };
   // deleting posts//
   deletePostHandler = (id, userId) => {
     axios
-      .delete(`http://localhost:7000/api/v1/posts/delete/${id}`, {
+      .delete(`/api/v1/posts/delete/${id}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -161,7 +161,7 @@ class MyPosts extends Component {
             editPost={() => this.editPostHandler(currPost._id, currPost.User)}
             upvote={() =>
               this.UpvoteOrDisvoteHandler(
-                'upvote',
+                "upvote",
                 currPost._id,
                 currPost.upvotes,
                 currPost.downvotes
@@ -169,7 +169,7 @@ class MyPosts extends Component {
             }
             downvote={() =>
               this.UpvoteOrDisvoteHandler(
-                'downvote',
+                "downvote",
                 currPost._id,
                 currPost.upvotes,
                 currPost.downvotes
@@ -191,7 +191,7 @@ class MyPosts extends Component {
                   ? this.context.user.name.charAt(0).toUpperCase() +
                     this.context.user.name.slice(1) +
                     "'s "
-                  : null}{' '}
+                  : null}{" "}
                 posts
               </h1>
             </div>

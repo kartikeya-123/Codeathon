@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Post from './../../components/Post/Post';
-import Aux from './../../hoc/Auxil/Auxil';
+import React, { Component } from "react";
+import Post from "./../../components/Post/Post";
+import Aux from "./../../hoc/Auxil/Auxil";
 // import FullPost from "./../FullPost/FullPost";
-import classes from './Posts.css';
-import axios from 'axios';
-import Spinner from './../../components/UI/Spinner/Spinner';
-import UserContext from './../../hoc/Context/UserContext';
+import classes from "./Posts.css";
+import axios from "axios";
+import Spinner from "./../../components/UI/Spinner/Spinner";
+import UserContext from "./../../hoc/Context/UserContext";
 // import { AiFillWindows } from 'react-icons/ai';
 // import {Link} from 'react-router-dom'
 // import Button from './../../components/UI/Button/Button'
@@ -22,7 +22,7 @@ class Posts extends Component {
     console.log(this.props);
     this.setState({ isLoading: true });
     axios
-      .get('http://localhost:7000/api/v1/posts')
+      .get("/api/v1/posts")
       .then((response) => {
         // console.log(response.data.data.docs);
         const posts = response.data.data.docs.slice(0, 20);
@@ -38,7 +38,7 @@ class Posts extends Component {
       id: id,
     };
     axios
-      .patch(`http://localhost:7000/api/v1/posts/${vote}/${id}`, data, {
+      .patch(`/api/v1/posts/${vote}/${id}`, data, {
         withCredentials: true,
       })
       .then((response) => {
@@ -62,7 +62,7 @@ class Posts extends Component {
 
   fullPostHandler = (id) => {
     // window.alert("post clicked");
-    this.props.history.push('/posts/' + id);
+    this.props.history.push("/posts/" + id);
   };
 
   confirmBlacklist = () => {
@@ -78,7 +78,7 @@ class Posts extends Component {
       Blacklist: true,
     };
     axios
-      .patch(`http://localhost:7000/api/v1/posts/blacklist/${id}`, data, {
+      .patch(`/api/v1/posts/blacklist/${id}`, data, {
         withCredentials: true,
       })
       .then((response) => {
@@ -112,8 +112,8 @@ class Posts extends Component {
             showConfirmMessage={this.state.showConfirmMessage}
             goBack={this.closeModal}
             blacklistPost={() => this.blacklistPostHandler(currPost._id)}
-            upvote={() => this.upovoteOrDisvote(currPost._id, 'upvote')}
-            downvote={() => this.upovoteOrDisvote(currPost._id, 'downvote')}
+            upvote={() => this.upovoteOrDisvote(currPost._id, "upvote")}
+            downvote={() => this.upovoteOrDisvote(currPost._id, "downvote")}
             upvotedBy={currPost.upvotedBy}
             downvotedBy={currPost.downvotedBy}
           />

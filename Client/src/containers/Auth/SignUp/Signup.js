@@ -1,76 +1,76 @@
-import React, { Component } from 'react';
-import Button from '../../../components/UI/Button/Button';
-import Spinner from '../../../components/UI/Spinner/Spinner';
-import axios from 'axios';
-import Input from './../../../components/UI/Input/Input';
-import { Link } from 'react-router-dom';
-import classes from './../Login/Login.css';
-import UserContext from './../../../hoc/Context/UserContext';
-import Modal from './../../../components/UI/Modal/Modal';
-import { FaUserLock } from 'react-icons/fa';
+import React, { Component } from "react";
+import Button from "../../../components/UI/Button/Button";
+import Spinner from "../../../components/UI/Spinner/Spinner";
+import axios from "axios";
+import Input from "./../../../components/UI/Input/Input";
+import { Link } from "react-router-dom";
+import classes from "./../Login/Login.css";
+import UserContext from "./../../../hoc/Context/UserContext";
+import Modal from "./../../../components/UI/Modal/Modal";
+import { FaUserLock } from "react-icons/fa";
 class Signup extends Component {
   state = {
     LoginForm: {
       name: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'name',
-          placeholder: 'Your name',
+          type: "name",
+          placeholder: "Your name",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'name',
+        name: "name",
       },
       email: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'email',
-          placeholder: 'Your Email',
+          type: "email",
+          placeholder: "Your Email",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'email',
+        name: "email",
       },
       password: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'password',
-          placeholder: 'Your password (min 8 characters)',
+          type: "password",
+          placeholder: "Your password (min 8 characters)",
         },
-        value: '',
+        value: "",
         validation: {
           minLength: 8,
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'password',
+        name: "password",
       },
       passwordConfirm: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'password',
-          placeholder: 'confirm password',
+          type: "password",
+          placeholder: "confirm password",
         },
-        value: '',
+        value: "",
         validation: {
           minLength: 8,
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'confirm password',
+        name: "confirm password",
       },
     },
-    errorMessage: '',
+    errorMessage: "",
     sendSignupToken: false,
     isLoggedin: false,
     isLoading: false,
@@ -97,7 +97,7 @@ class Signup extends Component {
         this.state.LoginForm.password.value !==
         this.state.LoginForm.passwordConfirm.value
       ) {
-        this.setState({ errorMessage: 'password does not match' });
+        this.setState({ errorMessage: "password does not match" });
         error = true;
       }
     }
@@ -111,7 +111,7 @@ class Signup extends Component {
       console.log(user);
       // this.setState({ isLoading: true });
       axios
-        .post('http://localhost:7000/api/v1/users/signup', user, {
+        .post("/api/v1/users/signup", user, {
           withCredentials: true,
         })
         .then((response) => {
@@ -124,7 +124,7 @@ class Signup extends Component {
         })
         .catch((error) => {
           this.setState({
-            errorMessage: 'email id is invalid or already used',
+            errorMessage: "email id is invalid or already used",
             isLoading: false,
           });
         });
@@ -133,7 +133,7 @@ class Signup extends Component {
   checkValidity(value, rules) {
     let isValid = false;
     if (rules.required) {
-      isValid = value.trim() !== '';
+      isValid = value.trim() !== "";
     }
     if (rules.minLength && isValid) {
       isValid = value.length >= rules.minLength;
@@ -162,7 +162,7 @@ class Signup extends Component {
   };
 
   continue = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
     window.location.reload(false);
   };
   render() {
@@ -179,8 +179,8 @@ class Signup extends Component {
         <div className={classes.Form}>
           <FaUserLock color="green" size="70px" />
           <h2>Signup</h2>
-          <p style={{ color: 'red' }}>
-            {this.state.errorMessage ? '*' + this.state.errorMessage : null}
+          <p style={{ color: "red" }}>
+            {this.state.errorMessage ? "*" + this.state.errorMessage : null}
           </p>
           {formElementsArray.map((formElement) => (
             <Input

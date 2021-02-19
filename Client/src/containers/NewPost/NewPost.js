@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import UserContext from './../../hoc/Context/UserContext';
-import classes from './NewPost.css';
-import Aux from './../../hoc/Auxil/Auxil';
-import Modal from './../../components/UI/Modal/Modal';
-import Button from './../../components/UI/Button/Button';
+import React, { Component } from "react";
+import axios from "axios";
+import UserContext from "./../../hoc/Context/UserContext";
+import classes from "./NewPost.css";
+import Aux from "./../../hoc/Auxil/Auxil";
+import Modal from "./../../components/UI/Modal/Modal";
+import Button from "./../../components/UI/Button/Button";
 class NewPost extends Component {
   state = {
-    title: '',
-    body: '',
-    author: '',
+    title: "",
+    body: "",
+    author: "",
     isLoading: true,
     show: false,
   };
@@ -23,7 +23,7 @@ class NewPost extends Component {
     };
     console.log(data);
     axios
-      .post('http://localhost:7000/api/v1/posts', data, {
+      .post("/api/v1/posts", data, {
         withCredentials: true,
       })
       .then((response) => {
@@ -34,7 +34,7 @@ class NewPost extends Component {
       });
   };
   continue = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
     window.location.reload(false);
   };
   render() {

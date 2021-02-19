@@ -1,45 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import Aux from "./../../../hoc/Auxil/Auxil";
-import Spinner from '../../../components/UI/Spinner/Spinner';
-import axios from 'axios';
-import classes from './Login.css';
-import UserContext from './../../../hoc/Context/UserContext';
-import { Link } from 'react-router-dom';
-import Input from './../../../components/UI/Input/Input';
-import Button from './../../../components/UI/Button/Button';
-import Modal from './../../../components/UI/Modal/Modal';
-import { FaUserLock, FaUserCheck } from 'react-icons/fa';
+import Spinner from "../../../components/UI/Spinner/Spinner";
+import axios from "axios";
+import classes from "./Login.css";
+import UserContext from "./../../../hoc/Context/UserContext";
+import { Link } from "react-router-dom";
+import Input from "./../../../components/UI/Input/Input";
+import Button from "./../../../components/UI/Button/Button";
+import Modal from "./../../../components/UI/Modal/Modal";
+import { FaUserLock, FaUserCheck } from "react-icons/fa";
 // import NavigationItem from '../../../components/Navigation/NavigationItem/NavigationItem';
 class Auth extends Component {
   state = {
     LoginForm: {
       email: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'email',
-          placeholder: 'Your Email',
+          type: "email",
+          placeholder: "Your Email",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'email',
+        name: "email",
       },
       password: {
-        elementType: 'input',
+        elementType: "input",
         elementConfig: {
-          type: 'password',
-          placeholder: 'Your Password',
+          type: "password",
+          placeholder: "Your Password",
         },
-        value: '',
+        value: "",
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        name: 'password',
+        name: "password",
       },
     },
     isLoading: false,
@@ -55,7 +55,7 @@ class Auth extends Component {
   // checkIsLoggedIn = () => {
   //   this.setState({ isLoading: true });
   //   axios
-  //     .get("http://localhost:7000/api/v1/users/loginStatus", {
+  //     .get("/api/v1/users/loginStatus", {
   //       withCredentials: true,
   //     })
   //     .then((response) => {
@@ -73,7 +73,7 @@ class Auth extends Component {
 
   loginUserHandler = (event) => {
     event.preventDefault();
-    this.setState({ errorMessage: '' });
+    this.setState({ errorMessage: "" });
     let error = false;
     for (let input in this.state.LoginForm) {
       if (this.state.LoginForm[input].valid === false) {
@@ -91,7 +91,7 @@ class Auth extends Component {
       console.log(user);
       // this.setState({ isLoading: true });
       axios
-        .post('http://localhost:7000/api/v1/users/login', user, {
+        .post("/api/v1/users/login", user, {
           withCredentials: true,
         })
         .then((response) => {
@@ -99,7 +99,7 @@ class Auth extends Component {
           console.log(document.cookie);
           if (!response.data.verification) {
             this.setState({
-              errorMessage: 'You have not verified your email id ',
+              errorMessage: "You have not verified your email id ",
               isLoading: false,
               emailVerified: false,
             });
@@ -109,7 +109,7 @@ class Auth extends Component {
         .catch((error) => {
           console.log(error.data);
           this.setState({
-            errorMessage: 'invalid email or password',
+            errorMessage: "invalid email or password",
             isLoading: false,
           });
         });
@@ -119,7 +119,7 @@ class Auth extends Component {
   checkValidity(value, rules) {
     let isValid = false;
     if (rules.required) {
-      isValid = value.trim() !== '';
+      isValid = value.trim() !== "";
     }
     if (rules.minLength && isValid) {
       isValid = value.length >= rules.minLength;
@@ -148,7 +148,7 @@ class Auth extends Component {
   };
 
   continue = () => {
-    this.props.history.push('/');
+    this.props.history.push("/");
     window.location.reload(false);
   };
   render() {
@@ -164,9 +164,9 @@ class Auth extends Component {
       <div className={classes.Login}>
         <div className={classes.Form}>
           <FaUserLock color="blue" size="70px" />
-          <h2 style={{ color: 'green' }}>Login</h2>
-          <p style={{ color: 'red' }}>
-            {this.state.errorMessage ? '*' + this.state.errorMessage : null}
+          <h2 style={{ color: "green" }}>Login</h2>
+          <p style={{ color: "red" }}>
+            {this.state.errorMessage ? "*" + this.state.errorMessage : null}
             {!this.state.emailVerified ? (
               <span className={classes.link}>
                 <Link to="/verifyEmail">verify email</Link>
@@ -218,7 +218,7 @@ class Auth extends Component {
     //   );
     // }
     const loggedinSuccessfully = (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: "center" }}>
         <FaUserCheck size="40px" color="green" />
 
         <h3>Welcome back to Postbox</h3>

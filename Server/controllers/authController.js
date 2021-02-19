@@ -116,6 +116,7 @@ exports.signup = catchAsync(async (req, res, next) => {
       message: 'verification email sent successfully',
     });
   } catch (err) {
+    console.log(err);
     return next(new AppError('problem in sending the email', 500));
   }
 });
@@ -162,7 +163,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     token = req.cookies.jwt;
   }
   // console.log(req.cookies.jwt);
-  // console.log(token);
+  console.log(token);
   if (!token) {
     return next(
       new AppError('You are not logged in! Please log in to get access.', 401)
