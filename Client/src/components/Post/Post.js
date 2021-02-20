@@ -103,6 +103,7 @@ class Post extends Component {
     comments: [],
     commentMessage: " ",
     url: " ",
+    data: "",
   };
 
   componentDidMount() {
@@ -334,7 +335,7 @@ class Post extends Component {
             </p>
             <p className={classes1.Date}>{date}</p>
           </div>
-          <div className={classes1.Body}>
+          {/* <div className={classes1.Body}>
             {this.props.body.length > 200 ? (
               !this.state.showMore ? (
                 <p>
@@ -360,6 +361,15 @@ class Post extends Component {
             ) : (
               <p>{this.props.body}</p>
             )}
+          </div> */}
+          <div>
+            {this.props.data !== undefined ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: this.props.data.replace(/&lt;/g, "<"),
+                }}
+              />
+            ) : null}
           </div>
 
           <hr></hr>

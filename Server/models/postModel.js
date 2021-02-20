@@ -10,10 +10,10 @@ const postSchema = new mongoose.Schema(
     author: {
       type: String,
     },
-    body: {
-      type: String,
-      required: [true, 'A post should contain info'],
-    },
+    // body: {
+    //   type: String,
+    //   required: [true, 'A post should contain info'],
+    // },
     upvotedBy: [
       {
         type: mongoose.Schema.ObjectId,
@@ -26,6 +26,10 @@ const postSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
+    data: {
+      type: String,
+      required: [true, 'A post should contain info'],
+    },
     upvotes: {
       type: Number,
       default: 0,

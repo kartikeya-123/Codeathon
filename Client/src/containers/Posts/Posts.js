@@ -107,7 +107,8 @@ class Posts extends Component {
               date={currPost.createdAt}
               upvotes={currPost.upvotes}
               downvotes={currPost.downvotes}
-              body={currPost.body}
+              // body={currPost.body}
+              data={currPost.data}
               key={currPost._id}
               postId={currPost._id}
               clicked={() => this.fullPostHandler(currPost._id)}

@@ -155,9 +155,10 @@ class MyPosts extends Component {
               date={currPost.createdAt}
               upvotes={currPost.upvotes}
               downvotes={currPost.downvotes}
-              body={currPost.body}
+              // body={currPost.body}
               comments={currPost.Comments}
               postId={currPost._id}
+              data={currPost.data}
               key={currPost._id}
               upvotedBy={currPost.upvotedBy}
               downvotedBy={currPost.downvotedBy}
