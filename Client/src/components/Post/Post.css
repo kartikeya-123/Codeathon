@@ -48,7 +48,7 @@
 .Heading {
   color: rgb(230, 32, 65) !important;
   font-size: 24px !important;
-  font-style: italic !important;
+  /* font-style: italic !important; */
   font-weight: bolder !important;
   text-align: center !important;
   text-decoration: none !important;
