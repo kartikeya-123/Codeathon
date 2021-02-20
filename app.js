@@ -49,13 +49,13 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '/Client/build')));
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/posts', postRouter);
 
 app.use('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
+  res.sendFile(path.join(__dirname, '/Client/build/index.html'));
 });
 
 module.exports = app;
