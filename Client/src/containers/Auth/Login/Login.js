@@ -187,7 +187,7 @@ class Auth extends Component {
             />
           ))}
           <span className={classes.Forgot}>
-            <p className={classes.link}>
+            <p className={classes.link} style={{ textAlign: "center" }}>
               <Link to="/forgotPassword">Forgot Password?</Link>
             </p>
           </span>

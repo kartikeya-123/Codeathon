@@ -6,7 +6,16 @@ import Button from "./../UI/Button/Button";
 import UserContext from "./../../hoc/Context/UserContext";
 import { FaUserEdit } from "react-icons/fa";
 
-import { Card } from "@material-ui/core";
+import {
+  AiFillLike,
+  AiFillDislike,
+  AiFillDelete,
+  AiOutlineLike,
+  AiOutlineDislike,
+  AiTwotoneEdit,
+} from "react-icons/ai";
+
+import { Card, Button as Button2 } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -21,14 +30,53 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 
-import {
-  AiFillLike,
-  AiFillDislike,
-  AiFillDelete,
-  AiOutlineLike,
-  AiOutlineDislike,
-  AiTwotoneEdit,
-} from "react-icons/ai";
+import Paper from "@material-ui/core/Paper";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import DirectionsIcon from "@material-ui/icons/Directions";
+import CommentIcon from "@material-ui/icons/Comment";
+
+const getStyles = makeStyles((theme) => ({
+  root: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "rgb(0,0,0,0.03)",
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+}));
+
+const CommentInputField = () => {
+  const classes = getStyles();
+
+  return (
+    <Paper component="form" className={classes.root} elevation={0}>
+      <CommentIcon />
+      <InputBase
+        className={classes.input}
+        placeholder="Add your comment ..."
+        inputProps={{ "aria-label": "search google maps" }}
+      />
+      <Divider className={classes.divider} orientation="vertical" />
+      <Button2 type="submit" className={classes.iconButton} aria-label="search">
+        POST
+      </Button2>
+    </Paper>
+  );
+};
 
 const useStyles = (theme) => ({
   root: {
@@ -206,7 +254,7 @@ class Post extends Component {
         <Modal show={this.props.showConfirmMessage}>
           {blacklistPostmessage}
         </Modal>
-        <Card style={{ padding: "30px" }}>
+        <Card style={{ padding: "30px 30px 0px 30px" }}>
           <h1 className={classes.Heading}>{this.props.title}</h1>
           <div className={classes.SecondHeader}>
             <p className={classes.Author}>
@@ -296,6 +344,7 @@ class Post extends Component {
               </p>
             </div>
           </div>
+          <CommentInputField />
         </Card>
         <div className={classes.root}>
           <Accordion style={{ borderRadius: "0px" }}>
