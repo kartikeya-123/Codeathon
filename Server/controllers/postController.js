@@ -146,9 +146,14 @@ exports.commentPost = catchAsync(async (req, res, next) => {
     author: req.user.name,
   });
 
-  post.Comments.push(comment._id);
+  if (post.Comments === null || post.Comments === undefined)
+    post.Comments = [comment];
+  else post.Comments.push(comment._id);
+
   await post.save({ runValidators: false });
   const updatedPost = await Post.findById(req.params.id);
+
+  console.log(updatedPost);
 
   res.status(200).json({
     status: 'success',

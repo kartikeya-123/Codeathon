@@ -72,7 +72,9 @@ postSchema.pre(/^find/, function (next) {
     .populate({
       path: 'Comments',
       select: 'comment author',
+      options: { sort: { createdAt: -1 } },
     });
+
   next();
 });
 

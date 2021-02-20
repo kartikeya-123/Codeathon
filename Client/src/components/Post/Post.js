@@ -27,15 +27,9 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
 
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import DirectionsIcon from "@material-ui/icons/Directions";
 import CommentIcon from "@material-ui/icons/Comment";
 
 const getStyles = makeStyles((theme) => ({
@@ -116,6 +110,7 @@ class Post extends Component {
           withCredentials: true,
         })
         .then((response) => {
+          console.log(response.data.updatedPost);
           this.setState({
             comments: response.data.updatedPost.Comments,
             commentMessage: " ",
