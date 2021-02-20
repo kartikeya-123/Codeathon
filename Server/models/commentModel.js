@@ -9,6 +9,10 @@ const commentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'A comment should belong to a user'],
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
