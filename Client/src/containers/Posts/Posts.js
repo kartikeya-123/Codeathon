@@ -63,6 +63,11 @@ class Posts extends Component {
       });
   };
 
+  // commentPost = (id,comment)=>{
+  //   axios.post(`/api/v1/posts/comment/${id}`, comment, {
+  //     withCredentials: true,
+  //   });
+  // }
   fullPostHandler = (id) => {
     // window.alert("post clicked");
     this.props.history.push("/posts/" + id);

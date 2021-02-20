@@ -214,8 +214,8 @@ class Signup extends Component {
     );
     const signupMessage = (
       <div>
-        <h1>Postbox</h1>
-        <h3>Welcome to postbox</h3>
+        <h1>Oscail</h1>
+        <h3>Welcome to oscail</h3>
         <p>We have sent a confirmation email to your email id</p>
         <p className={classes.link}>
           <Link to="/verifyEmail">Verify Email</Link>

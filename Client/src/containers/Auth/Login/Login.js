@@ -221,7 +221,7 @@ class Auth extends Component {
       <div style={{ textAlign: "center" }}>
         <FaUserCheck size="40px" color="green" />
 
-        <h3>Welcome back to Postbox</h3>
+        <h3>Welcome back to Oscail</h3>
         <p>You are successfully logged in</p>
         <Button btnType="Success" clicked={this.continue}>
           Continue
