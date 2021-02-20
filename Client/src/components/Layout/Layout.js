@@ -10,7 +10,7 @@ import Signup from "../../containers/Auth/SignUp/Signup";
 import ForgotPassword from "../../containers/Auth/ForgotPassword";
 import ChangePassword from "../../containers/Auth/ChangePassword";
 import VerifyEmail from "../../containers/Auth/VerifyEmail";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import User from "./../Profile/User/User";
 import MyPosts from "./../Profile/MyPosts/MyPosts";
 import EditPost from "./../Profile/MyPosts/EditPost";
@@ -116,7 +116,7 @@ class Layout extends Component {
                 />
                 <Route path="/verifyEmail" exact component={VerifyEmail} />
                 <Route path="/profile" exact component={User} />
-                <Route render={() => <h1>PAGE NOT FOUND</h1>} />
+                <Redirect exact from="*" to="/" />
               </Switch>
             )}
           </div>

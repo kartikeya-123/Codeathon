@@ -11,7 +11,8 @@ import "react-quill/dist/quill.snow.css";
 
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 
-import { Button } from "@material-ui/core";
+import { Button, Chip } from "@material-ui/core";
+
 class NewPost extends Component {
   state = {
     title: "",
@@ -20,6 +21,7 @@ class NewPost extends Component {
     isLoading: true,
     show: false,
     continued: false,
+    tags: [],
   };
   static contextType = UserContext;
 
@@ -90,6 +92,30 @@ class NewPost extends Component {
     return html;
   };
 
+  selectedTags = (tags) => {
+    console.log(tags);
+  };
+
+  removeTags = (indexToRemove) => {
+    this.setState({
+      tags: [...this.state.tags.filter((_, index) => index !== indexToRemove)],
+    });
+  };
+
+  addTags = (event) => {
+    console.log(event.target.value);
+    console.log(this.state.tags);
+    if (this.state.tags === undefined && event.target.value !== "") {
+      this.setState({ tags: [event.target.value] });
+      // props.selectedTags([...tags, event.target.value]);
+      event.target.value = "";
+    } else if (event.target.value !== "") {
+      this.setState({ tags: [...this.state.tags, event.target.value] });
+      // props.selectedTags([...tags, event.target.value]);
+      event.target.value = "";
+    }
+  };
+
   render() {
     const newPostmessage = (
       <div>
@@ -130,6 +156,38 @@ class NewPost extends Component {
                     this.setState({ body: event.target.value })
                   }
                 /> */}
+                <div style={{ width: "100%" }}>
+                  <h4>Add Tags</h4>
+                  <ul id="tags" style={{ width: "80%" }}>
+                    {this.state.tags !== undefined && this.state.tags.length > 0
+                      ? this.state.tags.map((tag, index) => (
+                          // <li key={index} className="tag">
+                          //   <span className="tag-title">{tag}</span>
+                          //   <span
+                          //     className="tag-close-icon"
+                          //     onClick={() => this.removeTags(index)}
+                          //   >
+                          //     x
+                          //   </span>
+                          // </li>
+                          <Chip
+                            key={index}
+                            label={tag}
+                            onDelete={() => this.removeTags(index)}
+                            color="primary"
+                          />
+                        ))
+                      : null}
+                  </ul>
+                  <input
+                    type="text"
+                    style={{ padding: "10px" }}
+                    onKeyUp={(event) =>
+                      event.key === "Enter" ? this.addTags(event) : null
+                    }
+                    placeholder="Press enter to add tags"
+                  />
+                </div>
 
                 <Button
                   onClick={() => {
