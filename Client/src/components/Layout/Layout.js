@@ -50,8 +50,8 @@ class Layout extends Component {
         // console.log(response.data);
         // this.setState({ isLoggedin: false });
 
-        this.props.history.push("/login");
-        window.location.reload(false);
+        this.props.history.push("/");
+        window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -91,19 +91,32 @@ class Layout extends Component {
             logout={this.logoutUserHandler}
           />
           <div className={classes.Body}>
-            <Switch>
-              <Route path="/" exact component={Posts} />
-              <Route path="/signup" exact component={Signup} />
-              <Route path="/login" exact component={Login} />
-              <Route path="/new-post" exact component={NewPost} />
-              <Route path="/my-posts" exact component={MyPosts} />
-              <Route path="/edit/:id" exact component={EditPost} />
-              <Route path="/forgotPassword" exact component={ForgotPassword} />
-              <Route path="/changePassword" exact component={ChangePassword} />
-              <Route path="/verifyEmail" exact component={VerifyEmail} />
-              <Route path="/profile" exact component={User} />
-              <Route render={() => <h1>PAGE NOT FOUND</h1>} />
-            </Switch>
+            {!this.state.isLoggedin ? (
+              <Switch>
+                <Route path="/signup" exact component={Signup} />
+                <Route path="/" exact component={Login} />
+              </Switch>
+            ) : (
+              <Switch>
+                <Route path="/" exact component={Posts} />
+                <Route path="/new-post" exact component={NewPost} />
+                <Route path="/my-posts" exact component={MyPosts} />
+                <Route path="/edit/:id" exact component={EditPost} />
+                <Route
+                  path="/forgotPassword"
+                  exact
+                  component={ForgotPassword}
+                />
+                <Route
+                  path="/changePassword"
+                  exact
+                  component={ChangePassword}
+                />
+                <Route path="/verifyEmail" exact component={VerifyEmail} />
+                <Route path="/profile" exact component={User} />
+                <Route render={() => <h1>PAGE NOT FOUND</h1>} />
+              </Switch>
+            )}
           </div>
         </Aux>
       </UserProvider>

@@ -35,7 +35,7 @@ const NavigationItems = (props) => {
             Home
           </NavigationItem> */}
           {/* </p> */}
-          <NavigationItem link="/login">Sign in</NavigationItem>
+          <NavigationItem link="/">Sign in</NavigationItem>
           <NavigationItem link="/signup">Sign up</NavigationItem>
           {/* <NavigationItem link="/new-post">Create</NavigationItem> */}
         </ul>
