@@ -26,10 +26,25 @@ const postSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
+    reportCount: {
+      type: Number,
+      default: 0,
+    },
+    reporters: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+      },
+    ],
     data: {
       type: String,
       required: [true, 'A post should contain info'],
     },
+    tags: [
+      {
+        type: String,
+      },
+    ],
     upvotes: {
       type: Number,
       default: 0,
