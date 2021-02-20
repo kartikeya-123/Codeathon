@@ -171,7 +171,7 @@ exports.reportPost = catchAsync(async (req, res, next) => {
 
   if (reportedPost.reporters && reportedPost.reporters.includes(req.user.id)) {
     res.status(200).json({
-      status: 'success',
+      status: 'Reported',
       message: 'This post is already reported by you',
     });
   } else {
@@ -195,7 +195,7 @@ exports.reportPost = catchAsync(async (req, res, next) => {
     res.status(200).json({
       status: 'Success',
       message: 'The post has been successfully reported',
-      data: reportedPost,
+      data: updatedPost,
     });
   }
 });

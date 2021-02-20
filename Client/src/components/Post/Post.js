@@ -15,7 +15,7 @@ import {
   AiTwotoneEdit,
 } from "react-icons/ai";
 
-import { Card, Button as Button2 } from "@material-ui/core";
+import { Card, Button as Button2, IconButton } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -27,11 +27,12 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemText from "@material-ui/core/ListItemText";
-
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import CommentIcon from "@material-ui/icons/Comment";
-
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 import {
   FacebookButton,
   FacebookCount,
@@ -40,6 +41,7 @@ import {
   TwitterButton,
   TwitterCount,
 } from "react-social";
+import CustomizedMenu from "./dots";
 
 const getStyles = makeStyles((theme) => ({
   root: {
@@ -104,6 +106,7 @@ class Post extends Component {
     commentMessage: " ",
     url: " ",
     data: "",
+    anchorEl: null,
   };
 
   componentDidMount() {
@@ -134,18 +137,23 @@ class Post extends Component {
         });
     }
   };
+  reportPost = () => {
+    let data = [];
+    axios
+      .patch(`/api/v1/posts/report/${this.props.postId}`, data, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.status == "Reported")
+          alert("You have already reported this post");
+        else alert("Successfully reported the post");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   static contextType = UserContext;
-  // const value = useContext(UserContext);
-  // let dropdown;
-  // if (this.props.userRole === "admin") {
-  //   dropdown = (
-  //     <span>
-  //       <Button btnType="Danger" clicked={props.blacklistPost}>
-  //         Blacklist
-  //       </Button>
-  //     </span>
-  //   );
-  // }
 
   showMoreHandler = () => {
     this.setState({ showMore: !this.state.showMore });
@@ -154,6 +162,14 @@ class Post extends Component {
   onChange = (event) => {
     this.setState({ commentMessage: event.target.value });
   };
+  handleClick = (event) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -319,7 +335,10 @@ class Post extends Component {
           {blacklistPostmessage}
         </Modal>
         <Card style={{ padding: "30px 30px 0px 30px" }}>
-          <h1 className={classes.Heading}>{this.props.title}</h1>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <h1 className={classes.Heading}>{this.props.title}</h1>
+            <CustomizedMenu report={this.reportPost} />
+          </div>
           <div
             className={classes.SecondHeader}
             style={{ display: "flex", justifyContent: "space-between" }}

@@ -44,4 +44,5 @@ router.delete(
 );
 
 router.post('/comment/:id', authController.protect, postController.commentPost);
+router.patch('/report/:id', authController.protect, postController.reportPost);
 module.exports = router;
