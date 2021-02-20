@@ -104,9 +104,8 @@ class Post extends Component {
       const data = {
         comment: comment,
       };
-      console.log(this.props.id);
       axios
-        .post(`/api/v1/posts/comment/${this.props.id}`, data, {
+        .post(`/api/v1/posts/comment/${this.props.postId}`, data, {
           withCredentials: true,
         })
         .then((response) => {
@@ -306,7 +305,10 @@ class Post extends Component {
         </Modal>
         <Card style={{ padding: "30px 30px 0px 30px" }}>
           <h1 className={classes.Heading}>{this.props.title}</h1>
-          <div className={classes.SecondHeader}>
+          <div
+            className={classes.SecondHeader}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <p className={classes.Author}>
               <FaUserEdit color="rgb(104, 146, 76)" size="22px" />
               <span

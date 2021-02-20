@@ -109,7 +109,7 @@ class Posts extends Component {
               downvotes={currPost.downvotes}
               body={currPost.body}
               key={currPost._id}
-              id={currPost._id}
+              postId={currPost._id}
               clicked={() => this.fullPostHandler(currPost._id)}
               isLoggedin={this.state.isLoggedin}
               userRole={this.context.role}
