@@ -22,15 +22,13 @@ class FullPost extends Component {
   static contextType = UserContext;
 
   componentDidMount() {
-    // connecting with server
-    // console.log(this.props);
-
     this.setState({ isLoading: true });
     axios
-      .get(`/api/v1/posts/${this.props.params.match.id}`)
+      .get(`/api/v1/posts/${this.props.match.params.id}`)
       .then((response) => {
         // console.log(response.data.data.docs);
-        const posts = response.data.data.docs.slice(0, 20);
+        console.log(response.data.data.doc);
+        const posts = [response.data.data.doc];
         this.setState({ posts: posts, isLoading: false });
       })
       .catch((error) => {
@@ -111,7 +109,7 @@ class FullPost extends Component {
               downvotes={currPost.downvotes}
               body={currPost.body}
               key={currPost._id}
-              id={currPost._id}
+              postId={currPost._id}
               clicked={() => this.fullPostHandler(currPost._id)}
               isLoggedin={this.state.isLoggedin}
               userRole={this.context.role}
@@ -143,7 +141,7 @@ class FullPost extends Component {
           <section className={classes.Posts}>
             <div className={classes.Header}>
               <h1>
-                <strong>Find the Latest Posts ...</strong>
+                <strong>Oscail</strong>
               </h1>
             </div>
           </section>

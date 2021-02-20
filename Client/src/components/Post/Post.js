@@ -106,7 +106,10 @@ class Post extends Component {
   };
 
   componentDidMount() {
-    this.setState({ comments: this.props.comments });
+    // let url = window.location.href;
+    // url = url + "/post/" + this.props.postId;
+    let url = "https://material-ui.com/components/accordion/";
+    this.setState({ comments: this.props.comments, url: url });
   }
 
   commentPost = (comment) => {
@@ -114,9 +117,8 @@ class Post extends Component {
       const data = {
         comment: comment,
       };
-      console.log(this.props.id);
       axios
-        .post(`/api/v1/posts/comment/${this.props.id}`, data, {
+        .post(`/api/v1/posts/comment/${this.props.postId}`, data, {
           withCredentials: true,
         })
         .then((response) => {
@@ -307,7 +309,6 @@ class Post extends Component {
     //   );
     // };
     const appId = 1055338171618150;
-    const url = "https://www.npmjs.com/package/react-social";
 
     return (
       <Aux>
@@ -318,7 +319,10 @@ class Post extends Component {
         </Modal>
         <Card style={{ padding: "30px 30px 0px 30px" }}>
           <h1 className={classes.Heading}>{this.props.title}</h1>
-          <div className={classes.SecondHeader}>
+          <div
+            className={classes.SecondHeader}
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
             <p className={classes.Author}>
               <FaUserEdit color="rgb(104, 146, 76)" size="22px" />
               <span
@@ -405,21 +409,33 @@ class Post extends Component {
                 ) : null}
               </p>
               <p className={classes1.Votes}>
-                <FacebookButton url={url} appId={appId} element={Button2}>
-                  {/* <FacebookCount url={url} /> */}
+                <FacebookButton
+                  url={this.state.url}
+                  appId={appId}
+                  element={Button2}
+                >
+                  {/* <FacebookCount url={this.state.url} /> */}
                   {"Facebook"}
                 </FacebookButton>
               </p>
               <p className={classes1.Votes}>
-                <LinkedInButton url={url} appId={appId} element={Button2}>
-                  {/* <LinkedInCount url={url} /> */}
+                <LinkedInButton
+                  url={this.state.url}
+                  appId={appId}
+                  element={Button2}
+                >
+                  {/* <LinkedInCount url={this.state.url} /> */}
                   {"LinkedIn"}
                 </LinkedInButton>
               </p>
 
               <p className={classes1.Votes}>
-                <TwitterButton url={url} appId={appId} element={Button2}>
-                  {/* <TwitterCount url={url} /> */}
+                <TwitterButton
+                  url={this.state.url}
+                  appId={appId}
+                  element={Button2}
+                >
+                  {/* <TwitterCount url={this.state.url} /> */}
                   {"Twitter"}
                 </TwitterButton>
               </p>

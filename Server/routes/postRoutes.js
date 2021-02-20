@@ -33,7 +33,7 @@ router.get(
   postController.getUser,
   postController.getAllPosts
 );
-router.route('/:id').get(postController.checkBlacklist, postController.getPost);
+router.route('/:id').get(postController.getPost);
 
 router.delete(
   '/delete/:id',
