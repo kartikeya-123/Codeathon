@@ -157,6 +157,7 @@ class MyPosts extends Component {
               downvotes={currPost.downvotes}
               // body={currPost.body}
               comments={currPost.Comments}
+              tags={currPost.tags}
               postId={currPost._id}
               data={currPost.data}
               key={currPost._id}

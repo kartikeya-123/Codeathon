@@ -30,9 +30,15 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
+import Chip from "@material-ui/core/Chip";
 import InputBase from "@material-ui/core/InputBase";
 import CommentIcon from "@material-ui/icons/Comment";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+
+import FacebookIcon from "@material-ui/icons/Facebook";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
+import TwitterIcon from "@material-ui/icons/Twitter";
+
 import {
   FacebookButton,
   FacebookCount,
@@ -336,7 +342,10 @@ class Post extends Component {
         </Modal>
         <Card style={{ padding: "30px 30px 0px 30px" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <h1 className={classes.Heading}>{this.props.title}</h1>
+            {/* <h1 className={classes.Heading}>{this.props.title}</h1> */}
+            <h1 className={classes.Heading} style={{ margin: "5px 0px" }}>
+              {this.props.title}
+            </h1>
             <CustomizedMenu report={this.reportPost} />
           </div>
           <div
@@ -390,9 +399,24 @@ class Post extends Component {
               />
             ) : null}
           </div>
+          {this.props.tags !== undefined && this.props.tags.length > 0 ? (
+            <hr />
+          ) : null}
+          {this.props.tags !== undefined && this.props.tags.length > 0
+            ? this.props.tags.map((tag, index) => (
+                <Chip
+                  key={index}
+                  label={tag}
+                  color="primary"
+                  variant="outlined"
+                  size="small"
+                  clickable
+                  style={{ margin: "2px" }}
+                />
+              ))
+            : null}
 
-          <hr></hr>
-          {/* <br></br> */}
+          <hr />
 
           <div className={classes1.Properties}>
             <div style={{ display: "flex" }}>
@@ -413,7 +437,7 @@ class Post extends Component {
                   </Button>
                 ) : null}
               </p>
-              <p className={classes1.Votes}>
+              <p className={classes1.Votes} style={{ alignItems: "center" }}>
                 {this.props.editPost ? (
                   <AiTwotoneEdit
                     onClick={this.props.checkUpdate}
@@ -421,11 +445,11 @@ class Post extends Component {
                     cursor="pointer"
                     color="grey"
                     size="32px"
-                    style={{ marginRight: "10px" }}
+                    style={{ margin: "0px 5px", transform: "translateY(2px)" }}
                   />
                 ) : null}
               </p>
-              <p className={classes1.Votes}>
+              <p className={classes1.Votes} style={{ alignItems: "center" }}>
                 {this.props.deletePost ? (
                   <AiFillDelete
                     onClick={this.props.checkdelete}
@@ -433,7 +457,7 @@ class Post extends Component {
                     cursor="pointer"
                     color="grey"
                     size="26px"
-                    style={{ marginLeft: "10px" }}
+                    style={{ margin: "0px 5px" }}
                   />
                 ) : null}
               </p>
@@ -441,20 +465,24 @@ class Post extends Component {
                 <FacebookButton
                   url={this.state.url}
                   appId={appId}
-                  element={Button2}
+                  element={IconButton}
                 >
                   {/* <FacebookCount url={this.state.url} /> */}
-                  {"Facebook"}
+                  <FacebookIcon
+                    style={{ fontSize: "30px", color: "#1D4B98" }}
+                  />
                 </FacebookButton>
               </p>
               <p className={classes1.Votes}>
                 <LinkedInButton
                   url={this.state.url}
                   appId={appId}
-                  element={Button2}
+                  element={IconButton}
                 >
                   {/* <LinkedInCount url={this.state.url} /> */}
-                  {"LinkedIn"}
+                  <LinkedInIcon
+                    style={{ fontSize: "30px", color: "#0270AD" }}
+                  />
                 </LinkedInButton>
               </p>
 
@@ -462,10 +490,10 @@ class Post extends Component {
                 <TwitterButton
                   url={this.state.url}
                   appId={appId}
-                  element={Button2}
+                  element={IconButton}
                 >
                   {/* <TwitterCount url={this.state.url} /> */}
-                  {"Twitter"}
+                  <TwitterIcon style={{ fontSize: "30px", color: "#1C9CEA" }} />
                 </TwitterButton>
               </p>
             </div>

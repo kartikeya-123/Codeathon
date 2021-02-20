@@ -176,6 +176,10 @@ class NewPost extends Component {
                             label={tag}
                             onDelete={() => this.removeTags(index)}
                             color="primary"
+                            style={{
+                              margin: "2px",
+                              backgroundColor: "rgb(18, 95, 229)",
+                            }}
                           />
                         ))
                       : null}

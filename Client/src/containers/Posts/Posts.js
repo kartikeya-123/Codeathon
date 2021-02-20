@@ -107,6 +107,8 @@ class Posts extends Component {
               date={currPost.createdAt}
               upvotes={currPost.upvotes}
               downvotes={currPost.downvotes}
+              comments={currPost.Comments}
+              tags={currPost.tags}
               // body={currPost.body}
               data={currPost.data}
               key={currPost._id}
@@ -122,7 +124,6 @@ class Posts extends Component {
               downvote={() => this.upovoteOrDisvote(currPost._id, "downvote")}
               upvotedBy={currPost.upvotedBy}
               downvotedBy={currPost.downvotedBy}
-              comments={currPost.Comments}
             />
           </Grid>
         );
