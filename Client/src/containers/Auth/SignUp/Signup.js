@@ -15,7 +15,7 @@ class Signup extends Component {
         elementType: "input",
         elementConfig: {
           type: "name",
-          placeholder: "Your name",
+          placeholder: "Name",
         },
         value: "",
         validation: {
@@ -29,7 +29,7 @@ class Signup extends Component {
         elementType: "input",
         elementConfig: {
           type: "email",
-          placeholder: "Your Email",
+          placeholder: "Email",
         },
         value: "",
         validation: {
@@ -43,7 +43,7 @@ class Signup extends Component {
         elementType: "input",
         elementConfig: {
           type: "password",
-          placeholder: "Your password (min 8 characters)",
+          placeholder: "Password",
         },
         value: "",
         validation: {
@@ -58,7 +58,7 @@ class Signup extends Component {
         elementType: "input",
         elementConfig: {
           type: "password",
-          placeholder: "confirm password",
+          placeholder: "Confirm Password",
         },
         value: "",
         validation: {
