@@ -152,7 +152,7 @@ class VerifyEmail extends Component {
     );
     const loggedinSuccessfully = (
       <div>
-        <p>Welcome to Postbox</p>
+        <p>Welcome to OSCAIL</p>
         <p>You are successfully signed in</p>
         <Button btnType="Success" clicked={this.continue}>
           Continue

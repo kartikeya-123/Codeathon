@@ -84,7 +84,7 @@ class Layout extends Component {
             clicked={this.showSideDrawer}
             logout={this.logoutUserHandler}
           />
-          {/* <article className={classes.Welcome}>WELCOME TO POSTBOX</article> */}
+          {/* <article className={classes.Welcome}>WELCOME TO OSCAIL</article> */}
           <Sidedrawer
             open={this.state.showSideDrawer}
             closed={this.sideDrawerClosedHandler}

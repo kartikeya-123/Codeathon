@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import NavigationItem from './../NavigationItem/NavigationItem';
-import Aux from './../../../hoc/Auxil/Auxil';
+import React, { useContext } from "react";
+import NavigationItem from "./../NavigationItem/NavigationItem";
+import Aux from "./../../../hoc/Auxil/Auxil";
 // import { loginStatus } from "./../../LoginStatus";
-import UserContext from './../../../hoc/Context/UserContext';
-import classes from './NavigationItems.css';
+import UserContext from "./../../../hoc/Context/UserContext";
+import classes from "./NavigationItems.css";
 // import NavDropdown from "react-bootstrap/NavDropdown";
 // import Nav from "react-bootstrap/Nav";
-import Button from './../../UI/Button/Button';
+import Button from "./../../UI/Button/Button";
 
 // import { AiOutlineHome } from "react-icons/ai";
 const NavigationItems = (props) => {
@@ -30,7 +30,7 @@ const NavigationItems = (props) => {
         <ul className={classes.NavigationItems}>
           {/* <p>
             <AiOutlineHome color="white" size="13px" /> */}
-          {/* <h1 className={classes.Header}>POSTBOX</h1> */}
+          {/* <h1 className={classes.Header}>OSCAIL</h1> */}
           <NavigationItem link="/" active icon="home">
             Home
           </NavigationItem>
@@ -41,7 +41,7 @@ const NavigationItems = (props) => {
         </ul>
       ) : (
         <ul className={classes.NavigationItems}>
-          {/* <h1 className={classes.Header}>POSTBOX</h1> */}
+          {/* <h1 className={classes.Header}>OSCAIL</h1> */}
           <NavigationItem link="/" active>
             Home
           </NavigationItem>

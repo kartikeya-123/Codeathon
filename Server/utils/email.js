@@ -5,7 +5,7 @@ module.exports = class Email {
     (this.to = user.email),
       (this.name = user.name),
       (this.token = token),
-      (this.from = 'Postbox <raj.karthikeya2002@gmail.com>');
+      (this.from = 'Oscail <raj.karthikeya2002@gmail.com>');
   }
 
   //creating a transporter//
@@ -49,13 +49,13 @@ module.exports = class Email {
   async sendWelcome() {
     await this.send(
       'Welcome ',
-      `Glad to see you at POSTBOX , your welcome token is ${this.token}`
+      `Glad to see you at OSCAIL , your welcome token is ${this.token}`
     );
   }
   async sendResetToken() {
     await this.send(
       'Welcome ',
-      `Glad to see you at POSTBOX , your password token is ${this.token}`
+      `Glad to see you at OSCAIL , your password token is ${this.token}`
     );
   }
 };

@@ -172,7 +172,7 @@ class ResetPassword extends Component {
 
     const passwordChangeMessage = (
       <div>
-        <h1>Postbox</h1>
+        <h1>Oscail</h1>
         <h2>Password changed successfully</h2>
         <Button btnType="Success" clicked={this.continue}>
           Continue

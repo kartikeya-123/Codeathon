@@ -138,7 +138,7 @@ class Posts extends Component {
           {/* <section className={classes.Posts}>
             <div className={classes.Header}>
               <h1>
-                <strong>Welcome to Postbox</strong>
+                <strong>Welcome to Oscail</strong>
               </h1>
             </div>
           </section> */}
