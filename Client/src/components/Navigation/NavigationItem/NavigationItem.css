@@ -23,9 +23,10 @@
 .NavigationItem a:hover,
 .NavigationItem a:active {
   /* border-bottom: 4px solid #81d434; */
-  background-color: rgb(168, 161, 161);
+  background-color: rgb(168, 161, 161, 0.4);
   border-radius: 8px;
   padding-top: 2px;
+  padding-bottom: 25px;
 }
 .NavigationItemmyposts {
   margin: 0px;
