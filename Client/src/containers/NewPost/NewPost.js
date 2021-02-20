@@ -33,6 +33,7 @@ class NewPost extends Component {
       // body: this.state.body,
       author: this.state.author,
       data: html,
+      tags: this.state.tags,
     };
     // console.log(data);
     axios
