@@ -106,7 +106,7 @@ class Post extends Component {
   }
 
   commentPost = (comment) => {
-    if (comment.length != 0) {
+    if (comment.length != " ") {
       const data = {
         comment: comment,
       };
@@ -430,7 +430,7 @@ class Post extends Component {
               <Typography className={classes.heading}>Comments</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {this.props.comments.length != 0 ? (
+              {this.state.comments.length != 0 ? (
                 <List className={classes.root1}>
                   {this.state.comments.map((value, key) => {
                     return (
