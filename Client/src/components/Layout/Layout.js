@@ -101,6 +101,7 @@ class Layout extends Component {
                   exact
                   component={ForgotPassword}
                 />
+                <Route path="/verifyEmail" exact component={VerifyEmail} />
               </Switch>
             ) : (
               <Switch>
@@ -114,7 +115,6 @@ class Layout extends Component {
                   exact
                   component={ChangePassword}
                 />
-                <Route path="/verifyEmail" exact component={VerifyEmail} />
                 <Route path="/profile" exact component={User} />
                 <Redirect exact from="*" to="/" />
               </Switch>
