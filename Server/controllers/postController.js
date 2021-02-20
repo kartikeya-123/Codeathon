@@ -161,3 +161,41 @@ exports.commentPost = catchAsync(async (req, res, next) => {
   });
 });
 // exports.getPostsUser = factory.getAll()
+
+exports.reportPost = catchAsync(async (req, res, next) => {
+  const reportedPost = await Post.findById(req.params.id);
+
+  if (!reportedPost) {
+    return next(new AppError('The Post with this id is not present', 403));
+  }
+
+  if (reportedPost.reporters && reportedPost.reporters.includes(req.user.id)) {
+    res.status(200).json({
+      status: 'success',
+      message: 'This post is already reported by you',
+    });
+  } else {
+    const newReportCount = reportedPost.reportCount + 1;
+    let blacklistStatus = false;
+    if (newReportCount > 10) {
+      blacklistStatus = true;
+      // await sendEmail({
+      //   email: reportedPost.email,
+      //   subject: `Your profile has been unpublished.`,
+      //   message: `Hey Your post  been ${reportedPost.title} has been blaclisted due to excessive reports.\nContact admin for republishing it.`,
+      //   attachments: [],
+      // });
+    }
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, {
+      reportCount: newReportCount,
+      Blacklist: blacklistStatus,
+      $push: { reporters: req.user._id },
+    });
+
+    res.status(200).json({
+      status: 'Success',
+      message: 'The post has been successfully reported',
+      data: reportedPost,
+    });
+  }
+});
