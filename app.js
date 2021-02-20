@@ -1,3 +1,5 @@
+const path = require('path');
+
 const fs = require('fs');
 const express = require('express');
 const morgan = require('morgan');
@@ -47,11 +49,13 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/posts', postRouter);
 
 app.use('*', (req, res, next) => {
-  res.end('error');
+  res.sendFile(path.join(__dirname, '/client/build/index.html'));
 });
 
 module.exports = app;
