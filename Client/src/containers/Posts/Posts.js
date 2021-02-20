@@ -120,6 +120,7 @@ class Posts extends Component {
               downvote={() => this.upovoteOrDisvote(currPost._id, "downvote")}
               upvotedBy={currPost.upvotedBy}
               downvotedBy={currPost.downvotedBy}
+              comments={currPost.Comments}
             />
           </Grid>
         );

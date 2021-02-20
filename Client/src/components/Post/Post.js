@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import classes from "./Post.css";
+import classes1 from "./Post.css";
 import Modal from "./../UI/Modal/Modal";
 import Aux from "./../../hoc/Auxil/Auxil";
 import Button from "./../UI/Button/Button";
@@ -7,6 +7,19 @@ import UserContext from "./../../hoc/Context/UserContext";
 import { FaUserEdit } from "react-icons/fa";
 
 import { Card } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Divider from "@material-ui/core/Divider";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
 
 import {
   AiFillLike,
@@ -16,10 +29,29 @@ import {
   AiOutlineDislike,
   AiTwotoneEdit,
 } from "react-icons/ai";
+
+const useStyles = (theme) => ({
+  root: {
+    width: "100%",
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  root1: {
+    width: "100%",
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: "inline",
+  },
+});
+
 class Post extends Component {
   state = {
     showMore: false,
   };
+
   static contextType = UserContext;
   // const value = useContext(UserContext);
   // let dropdown;
@@ -36,8 +68,9 @@ class Post extends Component {
   showMoreHandler = () => {
     this.setState({ showMore: !this.state.showMore });
   };
-
+  classes1;
   render() {
+    const { classes } = this.props;
     let date = new Date(this.props.date).toDateString();
     let day = date.slice(0, 3);
     let date1 = date.slice(3);
@@ -130,6 +163,19 @@ class Post extends Component {
       </div>
     );
 
+    const allComments = this.props.comments.map((value, key) => {
+      return (
+        <ListItem alignItems="flex-start" key={key}>
+          <ListItemText
+            primary={
+              <div style={{ textTransform: "capitalize" }}>{value.author}</div>
+            }
+            secondary={<React.Fragment>{value.comment}</React.Fragment>}
+          />
+        </ListItem>
+      );
+    });
+
     return (
       <Aux>
         <Modal show={this.props.show}>{deletePostmessage}</Modal>
@@ -137,33 +183,39 @@ class Post extends Component {
         <Modal show={this.props.showConfirmMessage}>
           {blacklistPostmessage}
         </Modal>
-        <Card style={{ padding: "30px" }}>
-          {/* <h1 className={classes.Heading}>{this.props.title}</h1> */}
-          <div className={classes.SecondHeader}>
-            <p className={classes.Author}>
+        <Card style={{ padding: "30px", borderRadius: "0px" }}>
+          {/* <h1 className={classes1.Heading}>{this.props.title}</h1> */}
+          <div className={classes1.SecondHeader}>
+            <p className={classes1.Author}>
               <FaUserEdit color="rgb(104, 146, 76)" size="22px" />
               <span
-                className={classes.HeadSpace}
+                className={classes1.HeadSpace}
                 // style={{ marginBottom: '60px' }}
               >
                 {this.props.author}
               </span>
             </p>
-            <p className={classes.Date}>{date}</p>
+            <p className={classes1.Date}>{date}</p>
           </div>
-          <div className={classes.Body}>
+          <div className={classes1.Body}>
             {this.props.body.length > 200 ? (
               !this.state.showMore ? (
                 <p>
                   {this.props.body.slice(0, 200)}
-                  <span className={classes.Read} onClick={this.showMoreHandler}>
+                  <span
+                    className={classes1.Read}
+                    onClick={this.showMoreHandler}
+                  >
                     ...Read More
                   </span>
                 </p>
               ) : (
                 <p>
                   {this.props.body}
-                  <span className={classes.Read} onClick={this.showMoreHandler}>
+                  <span
+                    className={classes1.Read}
+                    onClick={this.showMoreHandler}
+                  >
                     ...Show Less
                   </span>
                 </p>
@@ -176,26 +228,26 @@ class Post extends Component {
           <hr></hr>
           {/* <br></br> */}
 
-          <div className={classes.Properties}>
+          <div className={classes1.Properties}>
             <div style={{ display: "flex" }}>
-              <p className={classes.Votes}>
+              <p className={classes1.Votes}>
                 {like}
-                <span className={classes.Spacing}>{this.props.upvotes}</span>
+                <span className={classes1.Spacing}>{this.props.upvotes}</span>
               </p>
-              <p className={classes.Votes}>
+              <p className={classes1.Votes}>
                 {Dislike}
-                <span className={classes.Spacing}>{this.props.downvotes}</span>
+                <span className={classes1.Spacing}>{this.props.downvotes}</span>
               </p>
             </div>
             <div style={{ display: "flex" }}>
-              <p className={classes.Votes}>
+              <p className={classes1.Votes}>
                 {this.props.userRole === "admin" ? (
                   <Button btnType="Danger" clicked={this.props.blacklistPost}>
                     Blacklist
                   </Button>
                 ) : null}
               </p>
-              <p className={classes.Votes}>
+              <p className={classes1.Votes}>
                 {this.props.editPost ? (
                   <AiTwotoneEdit
                     onClick={this.props.checkUpdate}
@@ -207,7 +259,7 @@ class Post extends Component {
                   />
                 ) : null}
               </p>
-              <p className={classes.Votes}>
+              <p className={classes1.Votes}>
                 {this.props.deletePost ? (
                   <AiFillDelete
                     onClick={this.props.checkdelete}
@@ -222,9 +274,27 @@ class Post extends Component {
             </div>
           </div>
         </Card>
+        <div className={classes.root}>
+          <Accordion style={{ borderRadius: "0px" }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>Comments</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {this.props.comments.length != 0 ? (
+                <List className={classes.root1}>{allComments}</List>
+              ) : (
+                <Typography>No comments for the post</Typography>
+              )}
+            </AccordionDetails>
+          </Accordion>
+        </div>
       </Aux>
     );
   }
 }
 
-export default Post;
+export default withStyles(useStyles)(Post);
