@@ -3,6 +3,7 @@ import Aux from "./../../hoc/Auxil/Auxil";
 import classes from "./Layout.css";
 import Toolbar from "./../UI/Toolbar/Toolbar";
 import Posts from "./../../containers/Posts/Posts";
+import FullPost from "./../../containers/Posts/FullPost";
 import NewPost from "./../../containers/NewPost/NewPost";
 import Login from "../../containers/Auth/Login/Login";
 import Signup from "../../containers/Auth/SignUp/Signup";
@@ -102,6 +103,7 @@ class Layout extends Component {
                 <Route path="/new-post" exact component={NewPost} />
                 <Route path="/my-posts" exact component={MyPosts} />
                 <Route path="/edit/:id" exact component={EditPost} />
+                <Route path="/post/:id" exact component={FullPost} />
                 <Route
                   path="/forgotPassword"
                   exact

@@ -32,6 +32,15 @@ import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import CommentIcon from "@material-ui/icons/Comment";
 
+import {
+  FacebookButton,
+  FacebookCount,
+  LinkedInButton,
+  LinkedInCount,
+  TwitterButton,
+  TwitterCount,
+} from "react-social";
+
 const getStyles = makeStyles((theme) => ({
   root: {
     padding: "2px 4px",
@@ -93,6 +102,7 @@ class Post extends Component {
     showMore: false,
     comments: [],
     commentMessage: " ",
+    url: " ",
   };
 
   componentDidMount() {
@@ -296,6 +306,8 @@ class Post extends Component {
     //     </Paper>
     //   );
     // };
+    const appId = 1055338171618150;
+    const url = "https://www.npmjs.com/package/react-social";
 
     return (
       <Aux>
@@ -391,6 +403,25 @@ class Post extends Component {
                     style={{ marginLeft: "10px" }}
                   />
                 ) : null}
+              </p>
+              <p className={classes1.Votes}>
+                <FacebookButton url={url} appId={appId} element={Button2}>
+                  {/* <FacebookCount url={url} /> */}
+                  {"Facebook"}
+                </FacebookButton>
+              </p>
+              <p className={classes1.Votes}>
+                <LinkedInButton url={url} appId={appId} element={Button2}>
+                  {/* <LinkedInCount url={url} /> */}
+                  {"LinkedIn"}
+                </LinkedInButton>
+              </p>
+
+              <p className={classes1.Votes}>
+                <TwitterButton url={url} appId={appId} element={Button2}>
+                  {/* <TwitterCount url={url} /> */}
+                  {"Twitter"}
+                </TwitterButton>
               </p>
             </div>
           </div>
