@@ -145,7 +145,7 @@ class Posts extends Component {
           <section className={classes.Posts}>
             <div className={classes.Header}>
               <h1>
-                <strong>Find the Latest Posts</strong>
+                <strong>Find the Latest Posts ...</strong>
               </h1>
             </div>
           </section>

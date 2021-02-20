@@ -71,10 +71,31 @@ class Post extends Component {
   classes1;
   render() {
     const { classes } = this.props;
-    let date = new Date(this.props.date).toDateString();
-    let day = date.slice(0, 3);
-    let date1 = date.slice(3);
-    date = day + "," + date1;
+
+    let date = "";
+    let time = this.props.date;
+    let length = (new Date().getTime() - new Date(time).getTime()) / 1000;
+
+    if (length / 60 < 1440) {
+      if (length < 60) date = `just now`;
+      else if (length < 120) date = `a min ago`;
+      else {
+        length = length / 60;
+
+        if (length < 60) date = `${parseInt(length)} mins ago`;
+        else {
+          length = length / 60;
+
+          if (length < 2) date = `an hour ago`;
+          else if (length < 24) date = `${parseInt(length)} hours ago`;
+        }
+      }
+    } else {
+      date = new Date(this.props.date).toDateString();
+      let day = date.slice(0, 3);
+      let date1 = date.slice(3);
+      date = day + "," + date1;
+    }
 
     let like = (
       <AiOutlineLike
@@ -100,8 +121,9 @@ class Post extends Component {
           <AiFillLike
             onClick={this.context.isLoggedin ? this.props.upvote : null}
             cursor={this.context.isLoggedin ? "pointer" : null}
-            color={this.context.isLoggedin ? "rgb(107, 210, 245)" : null}
+            color={this.context.isLoggedin ? "rgb(17, 112, 214)" : null}
             size="24px"
+            style={{ transform: "translateY(-2px)" }}
           />
         );
       }
@@ -112,8 +134,9 @@ class Post extends Component {
           <AiFillDislike
             onClick={this.context.isLoggedin ? this.props.downvote : null}
             cursor={this.contextisLoggedin ? "pointer" : null}
-            color={this.context.isLoggedin ? "rgb(151, 100, 100)" : null}
+            color={this.context.isLoggedin ? "red" : null}
             size="24px"
+            style={{ transform: "translateY(2px)" }}
           />
         );
       }
@@ -183,10 +206,10 @@ class Post extends Component {
         <Modal show={this.props.showConfirmMessage}>
           {blacklistPostmessage}
         </Modal>
-        <Card style={{ padding: "30px", borderRadius: "0px" }}>
-          {/* <h1 className={classes1.Heading}>{this.props.title}</h1> */}
-          <div className={classes1.SecondHeader}>
-            <p className={classes1.Author}>
+        <Card style={{ padding: "30px" }}>
+          <h1 className={classes.Heading}>{this.props.title}</h1>
+          <div className={classes.SecondHeader}>
+            <p className={classes.Author}>
               <FaUserEdit color="rgb(104, 146, 76)" size="22px" />
               <span
                 className={classes1.HeadSpace}

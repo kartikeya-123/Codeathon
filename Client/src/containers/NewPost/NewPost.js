@@ -4,7 +4,10 @@ import UserContext from "./../../hoc/Context/UserContext";
 import classes from "./NewPost.css";
 import Aux from "./../../hoc/Auxil/Auxil";
 import Modal from "./../../components/UI/Modal/Modal";
-import Button from "./../../components/UI/Button/Button";
+// import Button from "./../../components/UI/Button/Button";
+
+import { Button } from "@material-ui/core";
+
 class NewPost extends Component {
   state = {
     title: "",
@@ -41,7 +44,11 @@ class NewPost extends Component {
     const newPostmessage = (
       <div>
         <p>Successfully a new post created</p>
-        <Button btnType="Success" clicked={this.continue}>
+        <Button
+          onClick={this.continue}
+          variant="contained"
+          style={{ backgroundColor: "green", color: "white" }}
+        >
           Continue
         </Button>
       </div>
@@ -72,15 +79,13 @@ class NewPost extends Component {
                   this.setState({ body: event.target.value })
                 }
               />
-              {/* <label>Author</label>
-            <textarea
-              value={this.state.author}
-              onChange={(event) =>
-                this.setState({ author: event.target.value })
-              }  */}
-              {/* /* /> */}
-              <Button clicked={this.newPostHandler} btnType="Success">
-                Add Post
+              <Button
+                onClick={this.newPostHandler}
+                variant="contained"
+                color="primary"
+                style={{ margin: 20 }}
+              >
+                Publish
               </Button>
             </div>
           ) : (

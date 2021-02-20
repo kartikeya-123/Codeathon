@@ -5,6 +5,9 @@ import Aux from "./../../../hoc/Auxil/Auxil";
 
 import { FaUserAlt } from "react-icons/fa";
 import NavigationItem from "./../../Navigation/NavigationItem/NavigationItem";
+
+import { Button } from "@material-ui/core";
+
 const User = (props) => {
   const value = useContext(UserContext);
   // console.log(value.user);
@@ -28,7 +31,7 @@ const User = (props) => {
                   <h4>Total Posts</h4>
                   <p>{value.user.posts}</p>
                 </div> */}
-                <div className={classes.data}>
+                <div className={classes.data} style={{ textAlign: "right" }}>
                   <h4>Role</h4>
                   <p>{value.user.role}</p>
                 </div>
@@ -39,23 +42,37 @@ const User = (props) => {
               <h3>Links</h3>
               <div className={classes.projects_data}>
                 <div className={classes.data}>
-                  <h4 style={{ textTransform: "capitalize", padding: "8px" }}>
+                  {/* <h4 style={{ textTransform: "capitalize", padding: "8px" }}>
                     {value.user.name ? value.user.name + "'s " : null}posts{" "}
-                  </h4>
+                  </h4> */}
 
-                  <NavigationItem link="/my-posts" classProperty="my-posts">
-                    My Posts
-                  </NavigationItem>
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    style={{ fontFamily: "Open Sans" }}
+                  >
+                    <NavigationItem link="/my-posts" classProperty="my-posts">
+                      My Posts
+                    </NavigationItem>
+                  </Button>
                 </div>
                 <div className={classes.data}>
-                  <h4 style={{ padding: "8px" }}>Change Password </h4>
+                  {/* <h4 style={{ padding: "8px" }}>Change Password </h4> */}
 
-                  <NavigationItem
-                    link="/changePassword"
-                    classProperty="my-posts"
+                  <Button
+                    style={{
+                      backgroundColor: "rgb(42, 170, 42)",
+                      fontFamily: "Open Sans",
+                    }}
+                    variant="contained"
                   >
-                    changePassword
-                  </NavigationItem>
+                    <NavigationItem
+                      link="/changePassword"
+                      classProperty="my-posts"
+                    >
+                      Change Password
+                    </NavigationItem>
+                  </Button>
                 </div>
                 {/* <div className={classes.data}>
                   <h4>Most Viewed</h4>

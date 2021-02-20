@@ -11,10 +11,10 @@ import Modal from "./../../UI/Modal/Modal";
 import UserContext from "./../../../hoc/Context/UserContext";
 
 // import {Link} from 'react-router-dom'
-import Button from "./../../../components/UI/Button/Button";
+// import Button from "./../../../components/UI/Button/Button";
 // import Profile from "./../../Profile/Profile";
 
-import { Grid } from "@material-ui/core";
+import { Grid, Container, Button } from "@material-ui/core";
 
 class MyPosts extends Component {
   state = {
@@ -118,7 +118,7 @@ class MyPosts extends Component {
       <div>
         <h2>Post successfully deleted</h2>
         <br></br>
-        <Button btnType="Success" clicked={this.continue}>
+        <Button color="primary" clicked={this.continue}>
           Continue
         </Button>
       </div>
@@ -128,13 +128,22 @@ class MyPosts extends Component {
       posts = <Spinner />;
     } else if (this.state.posts.length === 0) {
       return (
-        <Aux>
-          <h2>You did not write any post</h2>
-          <h3>Write your first post</h3>
-          <NavigationItem link="/new-post" classProperty="my-posts">
-            New Post
-          </NavigationItem>
-        </Aux>
+        <Container style={{ textAlign: "center", marginTop: 100 }}>
+          <div>
+            <h2>You haven't published any posts yet</h2>
+          </div>
+          <div>
+            <Button
+              variant="contained"
+              color="secondary"
+              style={{ color: "white" }}
+            >
+              <NavigationItem link="/new-post" classProperty="my-posts">
+                Create A Post
+              </NavigationItem>
+            </Button>
+          </div>
+        </Container>
       );
     } else {
       posts = this.state.posts.map((currPost) => {
@@ -192,12 +201,12 @@ class MyPosts extends Component {
           <section className={classes.Posts}>
             <div className={classes.Header}>
               <h1>
-                {this.context.user.name
+                {/* {this.context.user.name
                   ? this.context.user.name.charAt(0).toUpperCase() +
                     this.context.user.name.slice(1) +
                     "'s "
-                  : null}{" "}
-                posts
+                  : null}{" "} */}
+                Your posts
               </h1>
             </div>
           </section>

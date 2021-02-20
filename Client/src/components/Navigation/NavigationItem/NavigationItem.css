@@ -37,17 +37,21 @@
   align-items: center;
 }
 
-.NavigationItemmyposts a {
-  color: rgb(21, 228, 255);
-  height: 100%;
-  margin-bottom: 25px;
-  padding: 4px 10px;
+.NavigationItemmyposts a,
+.NavigationItemmyposts a:link,
+.NavigationItemmyposts a:hover,
+.NavigationItemmyposts a:hover,
+.NavigationItemmyposts a:active {
+  color: white;
+  /* height: 100%; */
+  /* margin-bottom: 25px; */
+  /* padding: 4px 10px; */
   text-decoration: none;
-  font-weight: bolder;
-  border-bottom: 4px solid transparent;
-  display: block;
-  box-sizing: border-box;
+  /* font-weight: bolder; */
+  /* border-bottom: 4px solid transparent; */
+  /* display: block; */
+  /* box-sizing: border-box; */
 }
 .NavigationItemmyposts a:hover {
-  color: rgb(86, 0, 247);
+  /* color: rgb(86, 0, 247); */
 }
