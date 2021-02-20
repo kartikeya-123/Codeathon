@@ -31,13 +31,13 @@ const NavigationItems = (props) => {
           {/* <p>
             <AiOutlineHome color="white" size="13px" /> */}
           {/* <h1 className={classes.Header}>OSCAIL</h1> */}
-          <NavigationItem link="/" active icon="home">
+          {/* <NavigationItem link="/" active icon="home">
             Home
-          </NavigationItem>
+          </NavigationItem> */}
           {/* </p> */}
           <NavigationItem link="/login">Sign in</NavigationItem>
           <NavigationItem link="/signup">Sign up</NavigationItem>
-          <NavigationItem link="/new-post">Create</NavigationItem>
+          {/* <NavigationItem link="/new-post">Create</NavigationItem> */}
         </ul>
       ) : (
         <ul className={classes.NavigationItems}>
