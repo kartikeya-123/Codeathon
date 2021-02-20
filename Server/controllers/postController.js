@@ -148,10 +148,11 @@ exports.commentPost = catchAsync(async (req, res, next) => {
 
   post.Comments.push(comment._id);
   await post.save({ runValidators: false });
+  const updatedPost = await Post.findById(req.params.id);
 
   res.status(200).json({
     status: 'success',
-    post,
+    updatedPost,
   });
 });
 // exports.getPostsUser = factory.getAll()

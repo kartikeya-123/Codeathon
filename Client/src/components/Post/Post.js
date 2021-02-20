@@ -5,7 +5,7 @@ import Aux from "./../../hoc/Auxil/Auxil";
 import Button from "./../UI/Button/Button";
 import UserContext from "./../../hoc/Context/UserContext";
 import { FaUserEdit } from "react-icons/fa";
-
+import axios from "axios";
 import {
   AiFillLike,
   AiFillDislike,
@@ -59,25 +59,6 @@ const getStyles = makeStyles((theme) => ({
   },
 }));
 
-const CommentInputField = () => {
-  const classes = getStyles();
-
-  return (
-    <Paper component="form" className={classes.root} elevation={0}>
-      <CommentIcon />
-      <InputBase
-        className={classes.input}
-        placeholder="Add your comment ..."
-        inputProps={{ "aria-label": "search google maps" }}
-      />
-      <Divider className={classes.divider} orientation="vertical" />
-      <Button2 type="submit" className={classes.iconButton} aria-label="search">
-        POST
-      </Button2>
-    </Paper>
-  );
-};
-
 const useStyles = (theme) => ({
   root: {
     width: "100%",
@@ -93,13 +74,58 @@ const useStyles = (theme) => ({
   inline: {
     display: "inline",
   },
+  root2: {
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "rgb(0,0,0,0.03)",
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
 });
 
 class Post extends Component {
   state = {
     showMore: false,
+    comments: [],
+    commentMessage: " ",
   };
 
+  componentDidMount() {
+    this.setState({ comments: this.props.comments });
+  }
+
+  commentPost = (comment) => {
+    if (comment.length != 0) {
+      const data = {
+        comment: comment,
+      };
+      console.log(this.props.id);
+      axios
+        .post(`/api/v1/posts/comment/${this.props.id}`, data, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          this.setState({
+            comments: response.data.updatedPost.Comments,
+            commentMessage: " ",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
   static contextType = UserContext;
   // const value = useContext(UserContext);
   // let dropdown;
@@ -116,7 +142,10 @@ class Post extends Component {
   showMoreHandler = () => {
     this.setState({ showMore: !this.state.showMore });
   };
-  classes1;
+
+  onChange = (event) => {
+    this.setState({ commentMessage: event.target.value });
+  };
   render() {
     const { classes } = this.props;
 
@@ -234,7 +263,7 @@ class Post extends Component {
       </div>
     );
 
-    const allComments = this.props.comments.map((value, key) => {
+    const allComments = this.state.comments.map((value, key) => {
       return (
         <ListItem alignItems="flex-start" key={key}>
           <ListItemText
@@ -246,6 +275,32 @@ class Post extends Component {
         </ListItem>
       );
     });
+
+    // const CommentInputField = () => {
+    //   return (
+    //     <Paper component="form" className={classes.root2} elevation={0}>
+    //       <CommentIcon />
+    //       <InputBase
+    //         className={classes.input}
+    //         placeholder="Add your comment ..."
+    //         inputProps={{ "aria-label": "search google maps" }}
+    //         onChange={(event) =>
+    //           this.setState({ commentMessage: event.target.value })
+    //         }
+    //         value={this.state.commentMessage}
+    //       />
+    //       <Divider className={classes.divider} orientation="vertical" />
+    //       <Button2
+    //         type="submit"
+    //         className={classes.iconButton}
+    //         aria-label="search"
+    //         onClick={console.log(this.state.commentMessage)}
+    //       >
+    //         POST
+    //       </Button2>
+    //     </Paper>
+    //   );
+    // };
 
     return (
       <Aux>
@@ -344,7 +399,26 @@ class Post extends Component {
               </p>
             </div>
           </div>
-          <CommentInputField />
+          <Paper component="form" className={classes.root2} elevation={0}>
+            <CommentIcon />
+            <InputBase
+              className={classes.input}
+              placeholder="Add your comment ..."
+              inputProps={{ "aria-label": "search google maps" }}
+              onChange={(event) =>
+                this.setState({ commentMessage: event.target.value })
+              }
+              value={this.state.commentMessage}
+            />
+            <Divider className={classes.divider} orientation="vertical" />
+            <Button2
+              className={classes.iconButton}
+              aria-label="search"
+              onClick={() => this.commentPost(this.state.commentMessage)}
+            >
+              POST
+            </Button2>
+          </Paper>
         </Card>
         <div className={classes.root}>
           <Accordion style={{ borderRadius: "0px" }}>
@@ -357,7 +431,24 @@ class Post extends Component {
             </AccordionSummary>
             <AccordionDetails>
               {this.props.comments.length != 0 ? (
-                <List className={classes.root1}>{allComments}</List>
+                <List className={classes.root1}>
+                  {this.state.comments.map((value, key) => {
+                    return (
+                      <ListItem alignItems="flex-start" key={key}>
+                        <ListItemText
+                          primary={
+                            <div style={{ textTransform: "capitalize" }}>
+                              {value.author}
+                            </div>
+                          }
+                          secondary={
+                            <React.Fragment>{value.comment}</React.Fragment>
+                          }
+                        />
+                      </ListItem>
+                    );
+                  })}
+                </List>
               ) : (
                 <Typography>No comments for the post</Typography>
               )}
