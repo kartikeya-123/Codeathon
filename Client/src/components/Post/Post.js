@@ -116,9 +116,9 @@ class Post extends Component {
   };
 
   componentDidMount() {
-    // let url = window.location.href;
-    // url = url + "/post/" + this.props.postId;
-    let url = "https://material-ui.com/components/accordion/";
+    let url = window.location.href;
+    url = url + "/post/" + this.props.postId;
+    // let url = "https://material-ui.com/components/accordion/";
     this.setState({ comments: this.props.comments, url: url });
   }
 
@@ -298,7 +298,8 @@ class Post extends Component {
         <ListItem alignItems="flex-start" key={key}>
           <ListItemText
             primary={
-              <div style={{ textTransform: "capitalize" }}>{value.author}</div>
+              // <div style={{ textTransform: "capitalize" }}>{value.author}</div>
+              <div style={{ textTransform: "capitalize" }}>Anonymous User</div>
             }
             secondary={<React.Fragment>{value.comment}</React.Fragment>}
           />
@@ -358,7 +359,8 @@ class Post extends Component {
                 className={classes1.HeadSpace}
                 // style={{ marginBottom: '60px' }}
               >
-                {this.props.author}
+                {/* {this.props.author} */}
+                Anonymous User
               </span>
             </p>
             <p className={classes1.Date}>{date}</p>
@@ -537,11 +539,11 @@ class Post extends Component {
                         <ListItemText
                           primary={
                             <div style={{ textTransform: "capitalize" }}>
-                              {value.author}
+                              {value.comment}
                             </div>
                           }
                           secondary={
-                            <React.Fragment>{value.comment}</React.Fragment>
+                            <React.Fragment>Anonymous User</React.Fragment>
                           }
                         />
                       </ListItem>
