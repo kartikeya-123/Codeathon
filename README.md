@@ -1,2 +1,3 @@
-# NeuroProject
-# creating a website using mern stack 
+# Codathon
+# Anonymous blogging website . 
+# Features : Comment,Share,Edit,Tags 
